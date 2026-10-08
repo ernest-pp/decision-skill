@@ -1,0 +1,33 @@
+{
+  "meta": { "title": "Launch in two countries now, or in one country later?", "shortTitle": "Launch decision" },
+  "problem": {
+    "statement": "We can launch our new app in two countries now. Or we can wait six months and launch in one country.",
+    "decisionQuestion": "Do we launch in two countries now, or wait and launch in one country?",
+    "stakes": "High. The cost is tens of thousands.",
+    "reversibility": "Hard to undo after we spend the money"
+  },
+  "context": [
+    { "label": "Option 1", "value": "Two countries now. The cost is about 80k." },
+    { "label": "Option 2", "value": "One country in six months. The cost is 30k." }
+  ],
+  "assumptions": [
+    "All amounts are in thousands (k). The currency is not stated.",
+    "A payoff is the money that the app earns before the cost. The tool subtracts the cost.",
+    "The six-month wait has no extra cost. If it has a cost, add it to the cost of option 2."
+  ],
+  "toolSelection": {
+    "primary": "decision_tree_ev",
+    "why": "You gave chances and money amounts. The tool can compare the average result of each option. The pre-mortem then checks how the best plan can fail.",
+    "alsoConsider": [ { "name": "One-way or two-way door", "why": "Use it to find a smaller first launch that you can undo." } ]
+  },
+  "tools": [
+    { "preset": "decision_tree_ev", "data": { "unit": "k", "options": [
+      { "name": "Launch in two countries now", "cost": 80, "outcomes": [
+        { "label": "Does great", "p": 40, "payoff": 400 },
+        { "label": "Flops", "p": 60, "payoff": 50 } ] },
+      { "name": "Wait and launch in one country", "cost": 30, "outcomes": [
+        { "label": "Earns well", "p": 70, "payoff": 150 },
+        { "label": "Earns little", "p": 30, "payoff": 40 } ] } ] } },
+    { "preset": "premortem" }
+  ]
+}

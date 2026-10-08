@@ -1,0 +1,24 @@
+{
+  "meta": { "title": "This week: which task do I do first?", "shortTitle": "Weekly tasks" },
+  "problem": {
+    "statement": "I have many tasks this week. I do not know where to start.",
+    "decisionQuestion": "Which tasks do I do first this week?",
+    "deadline": "Monday morning",
+    "stakes": "Low",
+    "reversibility": "Easy to change"
+  },
+  "assumptions": [ "The client report has a deadline on Friday.", "The taxes have a deadline next month." ],
+  "toolSelection": {
+    "primary": "eisenhower",
+    "why": "You must sort the tasks. You do not need to score them. The matrix shows which tasks are urgent and which tasks are important."
+  },
+  "tools": [
+    { "preset": "eisenhower", "data": { "items": [
+      { "text": "Client report", "q": "tr" },
+      { "text": "Plan next quarter", "q": "tl" },
+      { "text": "Reply to spam email", "q": "bl" },
+      { "text": "Book the team lunch", "q": "br" },
+      "Taxes",
+      "Dentist appointment" ] } }
+  ]
+}

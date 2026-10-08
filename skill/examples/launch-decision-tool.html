@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Launch in two countries now, or in one country later?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Mali:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1f2933; --soft:#52606d; --board:#f3f6f9; --dot:#c3ccd6; --paper:#fff; --focus:#1d4ed8; --shadow:#cfd8e0;
+  --SM:#f6d36b; --AC:#9fd8ab; --OM:#9ee0e0; --OD:#cdbdf0; --GM:#f2989f; --MD:#bcd7fb; --AD:#ffc999; --DEV:#c9e58a; --ALL:#dfe5ec;
+  --warn:#9a3412; --good:#0f6b3a;
+  --body:'IBM Plex Sans Thai','IBM Plex Sans','Noto Sans','Leelawadee UI',Tahoma,'Segoe UI',Arial,sans-serif;
+  --hand:'Mali','Segoe Print','Comic Sans MS',cursive,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:116px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;font-family:var(--body);color:var(--ink);line-height:1.5;font-size:16px;background-color:var(--board);
+  background-image:radial-gradient(var(--dot) 1.3px,transparent 1.4px);background-size:28px 28px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+p{margin:0}
+.hidden{display:none!important}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink);display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:8px 18px}
+.bar>b{font-family:var(--hand);font-size:17px;white-space:nowrap}
+.filters{order:3;min-width:0;flex:1 0 100%;display:flex;gap:8px;overflow-x:auto;padding:3px 2px 5px;scrollbar-width:thin}
+.fchip{display:flex;align-items:center;gap:7px;border:1.5px solid var(--ink);background:#fff;border-radius:3px;padding:3px 10px;font-size:14px;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.fchip i{width:13px;height:13px;border:1.5px solid var(--ink);background:var(--c,#fff);flex:none}
+.fchip:hover{background:var(--ink);color:#fff}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-left:auto}
+.bar>b{flex:1 1 auto}
+#msg{font-size:12.5px;font-weight:600;color:var(--good);flex-basis:100%;text-align:right}
+#msg:empty{display:none}
+.dstat{font-size:13px;font-weight:600;border:1.5px dashed var(--ink);padding:1px 9px;background:#fff7d6;white-space:nowrap}
+.dstat.yes{border-style:solid;background:#d9f2df}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 90px;overflow-x:clip}
+@media (max-width:560px){.wrap{padding:0 12px 90px}.card{padding:14px 12px 12px}.sticky{width:100%}
+  .bar{padding:6px 10px;gap:4px 8px}.bar>b{font-size:15px}.acts .btn{padding:2px 9px;font-size:13px}#printBtn{display:none}.acts{margin-left:0}html{scroll-padding-top:104px}}
+
+/* hero */
+.hero{padding:42px 0 14px;max-width:880px}
+.hero h1{font-family:var(--hand);font-size:clamp(32px,5vw,52px);line-height:1.1;margin:0 0 14px}
+.hero p{font-size:17px;color:var(--soft);max-width:68ch}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.stat{background:var(--paper);border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ALL);padding:5px 12px;font-size:15px}
+.stat b{font-family:var(--hand);font-size:16px;margin-right:6px}
+
+/* panels */
+.panel{background:var(--paper);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--shadow);padding:16px 20px;margin:0 0 22px}
+.panel h2{font-family:var(--hand);font-size:20px;margin:0 0 8px}
+.panel p+p{margin-top:8px}
+.panel ul{margin:6px 0 0;padding-left:20px}
+.panel li{margin:4px 0;max-width:80ch}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:0;font-size:15px}
+dl.facts dt{font-weight:600;color:var(--soft)} dl.facts dd{margin:0}
+@media (max-width:560px){dl.facts{grid-template-columns:1fr}}
+.intro-row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;margin:28px 0 8px}
+.intro-row .panel{flex:1 1 360px;margin:0}
+.tbc{display:inline-block;background:#fff;border:1.5px dashed var(--ink);font-size:11.5px;font-weight:500;padding:2px 8px;transform:rotate(2deg);margin-left:10px;vertical-align:middle}
+
+/* sticky notes */
+.sticky{position:relative;width:250px;min-height:96px;padding:22px 16px 16px;background:var(--c);transform:rotate(-1.2deg);
+  box-shadow:0 12px 14px -9px rgba(31,41,51,.38),0 1px 0 rgba(31,41,51,.14);flex:none}
+.sticky::before{content:"";position:absolute;left:50%;top:-11px;width:78px;height:22px;margin-left:-39px;background:rgba(255,255,255,.55);border:1px solid rgba(31,41,51,.10);transform:rotate(-2deg)}
+.sticky b{display:block;font-family:var(--hand);font-size:21px;line-height:1.25}
+.sticky span{display:block;margin-top:4px;font-size:13px;color:#2b3440}
+.sticky.q{width:min(420px,100%);transform:rotate(-1deg)}
+.sticky.q b{font-size:24px}
+
+/* sections */
+section.tool{margin-top:54px}
+.shead{display:flex;flex-wrap:wrap;align-items:flex-end;gap:26px;margin-bottom:26px}
+.sgoal{max-width:62ch;font-size:16px;color:var(--soft);padding-bottom:6px}
+.card{background:var(--paper);border:1.5px solid var(--ink);box-shadow:5px 5px 0 var(--c,var(--shadow));padding:18px 22px 18px;margin:0 0 26px}
+.legend-list{list-style:none;margin:0 0 6px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:8px 24px}
+.legend-list li{display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+.legend-list .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.note{border-left:7px solid var(--c,var(--ink));background:#f6f8fa;border-top:1px solid #d5dde5;border-right:1px solid #d5dde5;border-bottom:1px solid #d5dde5;padding:8px 12px;margin:14px 0 0;font-size:14.5px}
+.note b{display:block;font-family:var(--hand);font-size:15px;margin-bottom:2px}
+.note ul{margin:4px 0 0;padding-left:18px}
+.note.warn{background:#fff7d6}
+.card h3,.h3{font-family:var(--hand);font-size:17px;margin:20px 0 8px}
+details.txt{margin-top:14px;font-size:14px}
+details.txt summary{cursor:pointer;color:var(--soft);width:max-content}
+details.txt ul{margin:8px 0 0;padding-left:22px;max-width:100ch}
+details.txt li{margin:3px 0}
+
+/* controls */
+.row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:10px 0}
+label{font-weight:600}
+input[type=text],input[type=number],input[type=date],textarea,select{background:#fff;border:1.5px solid var(--ink);border-radius:3px;padding:6px 9px;max-width:100%}
+input[type=text]{width:100%;min-width:0}
+textarea{width:100%;min-height:84px;resize:vertical;line-height:1.55}
+.btn{border:1.5px solid var(--ink);background:#fff;border-radius:3px;padding:4px 14px;font-weight:600}
+.btn:hover{background:#eef2f6}
+.btn.solid{background:var(--ink);color:#fff}
+.btn.solid:hover{background:#364452}
+.btn.small{padding:1px 9px;font-size:13px}
+.btn.danger{border-style:dashed;font-weight:500}
+.scale{display:inline-flex;flex-wrap:wrap;gap:6px}
+.scale button{min-width:42px;padding:3px 10px;border:1.5px solid var(--ink);background:#fff;border-radius:3px;font-weight:600}
+.scale button:hover{background:#eef2f6}
+.scale button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.muted{color:var(--soft)} .small{font-size:13px}
+.scroll{overflow-x:auto}
+table.grid{border-collapse:collapse;min-width:100%}
+table.grid th,table.grid td{border:1.5px solid var(--ink);padding:6px 8px;vertical-align:top;text-align:left;background:#fff}
+table.grid th{background:var(--c,#eef2f6);min-width:130px}
+table.grid select{width:100%}
+
+/* results */
+.result{margin-top:16px;padding:12px 16px;background:#fff;border:1.5px solid var(--ink);border-left:7px solid var(--c,var(--ink));box-shadow:3px 3px 0 var(--shadow)}
+.result>strong{font-family:var(--hand);font-size:16px}
+.rank{margin:12px 0}
+.rank .tagtop{font-size:11.5px;font-weight:600;background:var(--ink);color:#fff;padding:0 7px;margin-left:8px}
+.meter{height:16px;border:1.5px solid var(--ink);background:#eef2f6;margin:5px 0 2px}
+.meter>span{display:block;height:100%;background:var(--c,var(--MD));border-right:1.5px solid var(--ink)}
+
+/* quadrants */
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+@media (max-width:640px){.quad,.cols{grid-template-columns:1fr!important}}
+.cell{position:relative;background:#fff;border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--c);padding:12px 14px 8px 20px;min-height:140px}
+.cell::before,.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--c);border-right:1.5px solid var(--ink)}
+.cell h3{font-family:var(--hand);font-size:17px;margin:0;display:inline-block;border-bottom:4px solid var(--c)}
+.cell .when{font-size:12.5px;color:var(--soft);margin-top:4px}
+.cell .act{font-weight:600;font-size:14px;margin:4px 0 10px}
+.item{position:relative;display:flex;gap:6px;align-items:center;background:#fff;border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--c,var(--ALL));padding:4px 6px 4px 16px;margin:0 0 8px}
+.item>span{flex:1;overflow-wrap:anywhere;font-size:14.5px}
+.item select{max-width:150px;padding:2px 4px;font-size:13px}
+.item.free{--c:var(--ALL)}
+
+/* two columns */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.col{background:#fff;border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--c,var(--shadow));padding:12px 14px}
+.col>h3{font-family:var(--hand);font-size:17px;margin:0 0 6px;display:inline-block;border-bottom:4px solid var(--c,var(--ink))}
+.col .hint{font-size:12.5px;color:var(--soft);margin-bottom:6px}
+.line{display:grid;grid-template-columns:1fr 78px auto;gap:6px;margin:6px 0;align-items:center}
+.line.two{grid-template-columns:1fr auto}
+.opt-card{position:relative;background:#fff;border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--c,var(--shadow));padding:12px 14px 12px 22px;margin-top:14px}
+.opt-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--c,var(--ink));border-right:1.5px solid var(--ink)}
+
+/* steps (guided) */
+.step{position:relative;background:#fff;border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--c,var(--shadow));padding:11px 14px 11px 22px;margin:14px 0}
+.step::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--c,var(--ink));border-right:1.5px solid var(--ink)}
+.step .q{font-weight:600;margin-bottom:4px}
+.sectionhead{margin:24px 0 0;font-family:var(--hand);font-size:18px;display:inline-block;border-bottom:4px solid var(--c,var(--ink))}
+.opt{display:block;margin:6px 0;font-weight:500}.opt input{margin-right:8px}
+
+/* flow chart */
+.fleg{display:flex;flex-wrap:wrap;gap:12px 26px;margin-bottom:12px;font-size:14px}
+.fleg div{display:flex;align-items:center;gap:9px}
+.sw{width:54px;height:26px;border:1.5px solid var(--ink);flex:none}
+.sw.start{background:var(--ink);border-radius:14px}
+.sw.end{background:#d9f2df;border-radius:14px}
+.sw.dec{border:0;background:var(--ink);clip-path:polygon(12% 0,88% 0,100% 50%,88% 100%,12% 100%,0 50%);position:relative}
+.sw.dec::after{content:"";position:absolute;inset:1.5px;background:#fff1b8;clip-path:polygon(12% 0,88% 0,100% 50%,88% 100%,12% 100%,0 50%)}
+.chain{display:flex;flex-direction:column;align-items:center;margin:8px 0}
+.pill{border:1.5px solid var(--ink);border-radius:36px;padding:8px 22px;text-align:center;font-weight:500;max-width:620px}
+.pill.start{background:var(--ink);color:#fff}
+.pill.end{background:#d9f2df;text-align:left;border-radius:20px;padding:12px 22px;box-shadow:3px 3px 0 var(--shadow)}
+.pill.end h3{margin:0 0 4px;font-size:18px}
+.pill.end .ck::before{content:"\2713\00a0";font-weight:700}
+.hexw{position:relative;max-width:680px;width:100%;padding:1.6px;background:var(--ink);clip-path:polygon(5% 0,95% 0,100% 50%,95% 100%,5% 100%,0 50%)}
+.hexw.done{opacity:.7}
+.hexin{background:#fff1b8;padding:14px 8%;text-align:center;font-weight:500;clip-path:polygon(5% 0,95% 0,100% 50%,95% 100%,5% 100%,0 50%)}
+.hexin .help{font-weight:400;font-size:13px;color:#3a4651;margin-top:4px}
+.arrow{position:relative;width:2px;height:34px;background:var(--ink);margin:0 auto}
+.arrow::after{content:"";position:absolute;bottom:-1px;left:-5px;border:6px solid transparent;border-top:9px solid var(--ink);border-bottom:0}
+.arrow .el{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:#fff;border:1px solid #98a6b5;border-radius:2px;padding:0 6px;font-size:12px;font-weight:600;white-space:nowrap;max-width:70vw;overflow:hidden;text-overflow:ellipsis}
+.choices{display:flex;flex-direction:column;gap:8px;align-items:stretch;max-width:620px;width:100%;margin:2px 0}
+.choices .btn{text-align:left;padding:7px 14px}
+
+/* final form */
+.final .field{margin:14px 0}
+.final .field>label{display:block;font-size:13px;color:var(--soft);margin-bottom:4px}
+.decs{display:flex;flex-wrap:wrap;gap:8px}
+.dbtn{border:1.5px solid var(--ink);background:#fff;padding:7px 16px;font-weight:600;font-size:14.5px;border-radius:3px}
+.dbtn:hover{background:#eef2f6}
+.dbtn[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink);background:#ffe9a8}
+.dbtn.yes[aria-pressed="true"]{background:#d6f0dc}
+
+/* drawer */
+#drawer{position:fixed;right:0;top:0;bottom:0;z-index:80;width:min(500px,100vw);background:#fff;border-left:1.5px solid var(--ink);box-shadow:-8px 0 0 rgba(31,41,51,.12);overflow:auto;
+  transform:translateX(104%);visibility:hidden;transition:transform .2s ease,visibility 0s .2s;padding:20px 24px 40px}
+#drawer.open{transform:none;visibility:visible;transition:transform .2s ease}
+#drawer .x{position:absolute;right:14px;top:12px}
+#drawer .band{height:8px;background:var(--AD);border:1.5px solid var(--ink);width:90px;margin:0 0 12px}
+#drawer h2{font-family:var(--hand);font-size:22px;margin:6px 0 6px}
+#drawer textarea{min-height:300px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+@media (prefers-reduced-motion:reduce){#drawer,#drawer.open{transition:none}}
+@media print{.bar,#drawer{display:none}body{background:#fff}.card,.panel{break-inside:avoid}.scale button:not([aria-pressed="true"]){display:none}}
+</style>
+</head>
+<body>
+<header class="bar" id="bar"></header>
+<main class="wrap" id="app"></main>
+<aside id="drawer" aria-hidden="true" aria-labelledby="dtitle"></aside>
+
+<script id="config" type="application/json">{"meta": {"title": "Launch in two countries now, or in one country later?", "shortTitle": "Launch decision", "id": "launch-in-two-countries-now-or-in-one-country-la", "created": "2026-10-08", "language": "en"}, "problem": {"statement": "We can launch our new app in two countries now. Or we can wait six months and launch in one country.", "decisionQuestion": "Do we launch in two countries now, or wait and launch in one country?", "stakes": "High. The cost is tens of thousands.", "reversibility": "Hard to undo after we spend the money"}, "context": [{"label": "Option 1", "value": "Two countries now. The cost is about 80k."}, {"label": "Option 2", "value": "One country in six months. The cost is 30k."}], "assumptions": ["All amounts are in thousands (k). The currency is not stated.", "A payoff is the money that the app earns before the cost. The tool subtracts the cost.", "The six-month wait has no extra cost. If it has a cost, add it to the cost of option 2."], "toolSelection": {"primary": "decision_tree_ev", "why": "You gave chances and money amounts. The tool can compare the average result of each option. The pre-mortem then checks how the best plan can fail.", "alsoConsider": [{"name": "One-way or two-way door", "why": "Use it to find a smaller first launch that you can undo."}]}, "tools": [{"renderer": "tree", "title": "Decision tree with expected value", "source": "Decision tree analysis and expected monetary value.", "intro": "Use this tool when the results are uncertain. You must be able to estimate the chances and the payoffs. The tool changes guesses to numbers that you can compare.", "how": ["Add each option and its cost.", "For each option, list what can happen. Give the chance in percent and the payoff.", "The chances must total 100%.", "Compare the expected value and the worst case."], "readout": "Expected value is the average result if you could do the choice many times. If you can choose only one time, the worst case matters as much as the average.", "data": {"unit": "k", "options": [{"name": "Launch in two countries now", "cost": 80, "outcomes": [{"label": "Does great", "p": 40, "payoff": 400}, {"label": "Flops", "p": 60, "payoff": 50}]}, {"name": "Wait and launch in one country", "cost": 30, "outcomes": [{"label": "Earns well", "p": 70, "payoff": 150}, {"label": "Earns little", "p": 30, "payoff": 40}]}]}, "preset": "decision_tree_ev"}, {"renderer": "guided", "title": "Pre-mortem: imagine it failed", "source": "Pre-mortem by Gary Klein.", "intro": "Before you commit, imagine that the decision failed. Work backward from the failure and ask why. This makes it safe to name risks that people do not usually say.", "steps": [{"id": "story", "q": "It is one year later. The decision gave a bad result. What happened? Write one sentence.", "type": "text"}, {"id": "reasons", "q": "List all reasons for the failure. Write fast. Include causes that you or your team made.", "type": "text"}, {"id": "top3", "q": "Choose the 3 reasons that are most likely or most damaging. Which reason do you notice too late?", "type": "text"}, {"id": "fix", "q": "For each of the 3 reasons, write one action that reduces the chance or the damage.", "type": "text"}, {"id": "signal", "q": "Which early warning sign shows that the plan is failing? Who watches for it?", "type": "text"}, {"id": "verdict", "q": "What is your verdict after this exercise?", "type": "choice", "choices": ["Go as planned", "Go, with the changes above", "Test with a small step first", "Stop"]}], "readout": "A plan that has only reasons for success is a hope. A risk that you name now costs less to fix than a risk that you find later.", "preset": "premortem"}]}</script>
+<script>
+(function () {
+  "use strict";
+  var CFG;
+  try { CFG = JSON.parse(document.getElementById("config").textContent); }
+  catch (e) { document.getElementById("app").textContent = "This file has a broken setup block. Please rebuild it."; return; }
+  CFG.meta = CFG.meta || {}; CFG.problem = CFG.problem || {}; CFG.tools = CFG.tools || [];
+  if (CFG.meta.language) document.documentElement.lang = CFG.meta.language;
+  var STORE_KEY = "dtb:" + (CFG.meta.id || "tool");
+  var app = document.getElementById("app");
+  var state = { tools: [], final: {} };
+  var saveTimer = null, msgTimer = null, lastFocus = null;
+  var TOOLC = ["--SM", "--MD", "--AC", "--OD", "--GM", "--OM"];
+
+  /* ---------- text (English by default; CFG.ui can replace any key) ---------- */
+  var S = {
+    save: "Save my decision", load: "Load saved file", print: "Print or save as PDF", close: "Close",
+    sumTitle: "Summary you can copy", copy: "Copy text", copied: "Copied.", copySel: "The page selected the text. Press Ctrl+C (or Cmd+C) to copy it.",
+    savedFile: "Saved. Your browser downloaded the file {name}. To continue later, open this page and press Load. The text summary is open on the right.",
+    savedBrowser: "Saved in this browser. Your browser blocked the file download. Copy the summary text and keep it.",
+    loaded: "The page loaded your saved work.", loadFail: "The page could not load that file. Choose a file that this tool saved.",
+    found: "We found work that you saved earlier in this browser.", restore: "Restore it", fresh: "Start new", restored: "Restored.",
+    navProblem: "The problem", navWhy: "Why this tool", navDecision: "My decision",
+    deadline: "Deadline", owner: "Decision owner", stakes: "Stakes", reversibility: "Can it be undone?", background: "Background",
+    situation: "The situation", assumptions: "Assumptions to check", toConfirm: "to check",
+    why: "Why this tool", also: "Also useful", how: "How to use it", readout: "How to read the result", think: "Think it through",
+    asText: "Read this as text", mainTool: "Main tool", secondTool: "Second tool", notes: "Notes",
+    defaultNote: "This tool helps you think. It does not decide for you. Your own judgment comes first.",
+    finalTitle: "Your decision", finalPrompt: "Read what you learned. Then write your decision in your own words. You do not need to decide today.",
+    statusNo: "Not decided yet", statusYes: "I decided", chipNo: "Decision: not decided yet", chipYes: "Decision: {choice}", chipMade: "Decision made",
+    choice: "My choice", choicePh: "Which option?", reason: "Top reasons (keep it short)", conf: "How confident am I? (1 low, 5 high)",
+    step1: "First small step", step1Ph: "What will I do first?", review: "Review date", trip: "I will rethink this if", tripPh: "A clear warning sign",
+    sumHead: "DECISION SUMMARY", sumCreated: "Created", sumQ: "Decision question", sumProblem: "Problem", sumAssump: "Assumptions", sumMy: "My decision",
+    sumStatus: "Status", sumChoice: "Choice", sumWhy: "Why", sumConf: "Confidence (1 to 5)", sumStep: "First step", sumReview: "Review date", sumTrip: "I will rethink this if",
+    brokenTool: "Unknown tool type: {t}",
+    add: "Add", remove: "Remove", rm: "x",
+    gutQ: "Before you score: which option do you prefer now?", noLean: "No preference yet", crit: "Criterion", weight: "Weight (1 to 5)", optName: "Option name",
+    addOpt: "Add option", addCrit: "Add criterion", scoreLegend: "Weight: 5 = matters most. Score: 5 = best. For cost or risk, 5 means the lowest cost or risk.",
+    rankTitle: "Ranking (higher is better)", scoreAll: "Score each box to see the ranking.", nEmpty: "({n} empty)", top: "Top",
+    closeCall: "The top two options are within 8 points. Use a pre-mortem or the 10/10/10 test to choose between them.",
+    eqWin: "If all criteria had the same weight, {name} would win. Your result depends on your weights. Check the weights.",
+    gutAgree: "Your first feeling and the scores agree. This is a good sign.",
+    gutDiff: "Your first feeling chose {a}, but the scores favor {b}. Ask: is a criterion missing, or is a weight wrong?",
+    manyCrit: "You have more than 7 criteria. Remove the weakest criteria. Then the weights keep their meaning.", manyOpt: "More than 5 options can cause choice overload. Remove the weakest option.",
+    sumCrit: "Criteria (weight)", sumGut: "First preference before scoring",
+    axisUp: "Up = {a}, down = {b} ({l}).", axisRight: "Right = {a}, left = {b} ({l}).", itemPh: "Type an item and press Add", newItem: "New item",
+    notPlaced: "Not placed yet", moveTo: "Move {x}", removeX: "Remove {x}", sumNotPlaced: "Not placed",
+    forL: "For", againstL: "Against", describe: "Describe it", strength: "Strength 1 to 5", forcesHelp: "Give each item a strength from 1 (weak) to 5 (strong).",
+    addItems: "Add items to see the balance.", balDef: "The two sides are equal. The strength totals do not decide. Read the biggest item on each side.",
+    lDef: "The left side is stronger.", rDef: "The right side is stronger.", biggest: "Biggest items", left: "left", right: "right", none: "none", forceItem: "item",
+    writeHere: "Write here",
+    unitL: "Unit (for example $, hours, points):", costL: "Cost to choose this option:", happen: "What could happen", chance: "Chance (%)", payoff: "Payoff",
+    rmOption: "Remove option", addOutcome: "Add outcome", evTitle: "Expected value (the probability-weighted average, after cost)",
+    evLine: "expected {ev}   |   worst case {w}   |   best case {b}", chanceBad: "{name}: the chances total {n}%, not 100%. Fix the chances first.",
+    riskNote: "{a} has the best average, but it can lose money. {b} cannot lose money. If you can do this only one time, check the worst case and not only the average.",
+    estNote: "Expected value is an estimate from your guesses. Test it: change one chance by 10 points. Does the winner change?",
+    sumExpected: "expected", sumCost: "cost", optionN: "Option {n}", outcomeLabel: "Outcome label",
+    rateHelp: "Rate how you would feel: -2 = {a}, 0 = {b}, +2 = {c}.", why2: "Why? (short note)", rateOne: "Rate at least one box to see a pattern.",
+    hTotal: "total {s} across {n} rating(s)",
+    pSoonBad: "{name}: feels good soon, but bad later. This is a short-term pull. Be careful.", pLaterGood: "{name}: hard at first, but good later. Ask if you can continue.",
+    pAllGood: "{name}: feels good at all points in time. This is a strong option.", pAllBad: "{name}: feels bad at all points in time. This is a weak option.",
+    path: "Your answers so far", back: "Return one step", again: "Start again", nextSteps: "Good next steps", flowBad: "This flow has an error in its setup.",
+    fStart: "Start", fQuestion: "A question. Follow your answer", fEnd: "End", sumResult: "Result",
+    suggests: "What your answers suggest", yesDone: "Yes, done", heads: "Heads", tails: "Tails",
+    coinPick: "Choose which option is heads and which option is tails. Then flip the coin.", coinSays: "The coin says: {r}. Notice how you feel. Do you feel relief or disappointment?",
+    flip: "Flip the coin", coinFeel: "How do I feel about this result?", coinHT: "Heads = {a}    Tails = {b}", sumSuggest: "What the answers suggest"
+  };
+  function T(k, v) {
+    var s = (CFG.ui && CFG.ui[k] != null) ? CFG.ui[k] : (S[k] != null ? S[k] : k);
+    return v ? s.replace(/\{(\w+)\}/g, function (m, n) { return v[n] != null ? v[n] : m; }) : s;
+  }
+
+  /* ---------- tiny helpers ---------- */
+  function add(el, c) {
+    if (c == null || c === false) return;
+    if (Array.isArray(c)) { c.forEach(function (x) { add(el, x); }); return; }
+    el.appendChild(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  function h(tag, attrs) {
+    var el = document.createElement(tag), later = null;
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k]; if (v == null || v === false) return;
+      if (k === "class") el.className = v;
+      else if (k === "text") el.textContent = v;
+      else if (k.indexOf("on") === 0) el.addEventListener(k.slice(2), v);
+      else if (k === "value") later = v;
+      else el.setAttribute(k, v === true ? "" : v);
+    });
+    for (var i = 2; i < arguments.length; i++) add(el, arguments[i]);
+    if (later !== null) el.value = later;
+    return el;
+  }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function num(v) { var n = parseFloat(v); return isNaN(n) ? 0 : n; }
+  function fmt(n) { return (Math.round(n * 100) / 100).toLocaleString(undefined, { maximumFractionDigits: 2 }); }
+  function btn(text, fn, cls) { return h("button", { type: "button", "class": "btn " + (cls || ""), onclick: fn, text: text }); }
+  function rmBtn(label, fn) { return h("button", { type: "button", "class": "btn danger small", "aria-label": label, text: T("rm"), onclick: fn }); }
+  function txt(value, ph, fn, label) {
+    var i = h("input", { type: "text", placeholder: ph || "", "aria-label": label || ph || "text", oninput: function () { fn(i.value); } });
+    i.value = value || ""; return i;
+  }
+  function numIn(value, fn, label, ph) {
+    var i = h("input", { type: "number", step: "any", placeholder: ph || "", "aria-label": label, oninput: function () { fn(i.value); } });
+    i.value = (value === null || value === undefined) ? "" : value; return i;
+  }
+  function sel(opts, value, fn, label) {
+    var s = h("select", { "aria-label": label, onchange: function () { fn(s.value); } });
+    opts.forEach(function (o) { var op = h("option", { value: o.v, text: o.t }); if (String(o.v) === String(value)) op.selected = true; s.appendChild(op); });
+    return s;
+  }
+  function list(arr) { return h("ul", null, (arr || []).map(function (x) { return h("li", { text: x }); })); }
+  function note(title, kids, cls) { return h("div", { "class": "note " + (cls || "") }, title ? h("b", { text: title }) : null, kids); }
+  function colorVar(k) { return "var(" + k + ")"; }
+  function say(m) { var e = document.getElementById("msg"); if (!e) return; e.textContent = m; clearTimeout(msgTimer); msgTimer = setTimeout(function () { e.textContent = ""; }, 7000); }
+
+  /* ---------- guided steps (guided tools and every tool's prompts) ---------- */
+  function evalRules(rules, steps, store) {
+    var out = [];
+    (rules || []).forEach(function (r) {
+      var ok = (r["if"] || []).every(function (c) {
+        var v = store[c.id], step = steps.filter(function (s) { return s.id === c.id; })[0];
+        if (step && step.type === "checks") v = Object.keys(v || {}).filter(function (k) { return v[k]; }).length;
+        if (step && step.type === "coin") v = v && v.result;
+        if (v === undefined || v === null || v === "") return false;
+        if (typeof v === "string" && c.op !== "eq" && c.op !== "neq") return false;
+        var n = typeof c.value === "number" ? Number(v) : v;
+        switch (c.op) {
+          case "lt": return n < c.value; case "lte": return n <= c.value;
+          case "gt": return n > c.value; case "gte": return n >= c.value;
+          case "eq": return n === c.value; case "neq": return n !== c.value;
+        } return false;
+      });
+      if (ok) out.push(r.then);
+    });
+    return out;
+  }
+  function renderSteps(box, steps, store, ctx, rules) {
+    var verdict = h("div", { "class": "note hidden", "aria-live": "polite" });
+    function upd() {
+      var msgs = evalRules(rules, steps, store);
+      verdict.textContent = "";
+      if (!msgs.length) { verdict.classList.add("hidden"); return; }
+      verdict.classList.remove("hidden");
+      verdict.appendChild(h("b", { text: T("suggests") })); verdict.appendChild(list(msgs));
+    }
+    var lastSection = null;
+    steps.forEach(function (s) {
+      if (s.section && s.section !== lastSection) { box.appendChild(h("div", null, h("div", { "class": "sectionhead", text: s.section }))); lastSection = s.section; }
+      var wrap = h("div", { "class": "step" });
+      wrap.appendChild(h("div", { "class": "q", text: s.q }));
+      if (s.help) wrap.appendChild(h("div", { "class": "muted small", text: s.help }));
+      var t = s.type || "text";
+      if (t === "text") {
+        var ta = h("textarea", { "aria-label": s.q, oninput: function () { store[s.id] = ta.value; ctx.changed(); upd(); } });
+        ta.value = store[s.id] || ""; wrap.appendChild(ta);
+      } else if (t === "number") {
+        wrap.appendChild(numIn(store[s.id], function (v) { store[s.id] = v === "" ? "" : num(v); ctx.changed(); upd(); }, s.q));
+      } else if (t === "scale") {
+        var min = s.min == null ? 1 : s.min, max = s.max == null ? 5 : s.max, bs = [];
+        var sc = h("div", { "class": "scale", role: "group", "aria-label": s.q });
+        for (var n = min; n <= max; n++) (function (n) {
+          var b = h("button", { type: "button", text: String(n), "aria-pressed": String(store[s.id] === n), onclick: function () {
+            store[s.id] = (store[s.id] === n) ? "" : n; bs.forEach(function (x) { x.b.setAttribute("aria-pressed", String(store[s.id] === x.n)); });
+            ctx.changed(); upd(); } });
+          bs.push({ b: b, n: n }); sc.appendChild(b);
+        })(n);
+        wrap.appendChild(sc);
+        if (s.low || s.high) wrap.appendChild(h("div", { "class": "muted small", text: (s.low ? min + " = " + s.low : "") + (s.low && s.high ? "   |   " : "") + (s.high ? max + " = " + s.high : "") }));
+      } else if (t === "choice") {
+        (s.choices || []).forEach(function (c) {
+          var r = h("input", { type: "radio", name: "r-" + s.id + "-" + steps.indexOf(s), onchange: function () { store[s.id] = c; ctx.changed(); upd(); } });
+          r.checked = store[s.id] === c;
+          wrap.appendChild(h("label", { "class": "opt" }, r, c));
+        });
+      } else if (t === "check") {
+        var cb = h("input", { type: "checkbox", onchange: function () { store[s.id] = cb.checked; ctx.changed(); upd(); } });
+        cb.checked = !!store[s.id]; wrap.appendChild(h("label", { "class": "opt" }, cb, s.label || T("yesDone")));
+      } else if (t === "checks") {
+        store[s.id] = store[s.id] || {};
+        (s.items || []).forEach(function (it, ix) {
+          var c2 = h("input", { type: "checkbox", onchange: function () { store[s.id][ix] = c2.checked; ctx.changed(); upd(); } });
+          c2.checked = !!store[s.id][ix]; wrap.appendChild(h("label", { "class": "opt" }, c2, it));
+        });
+      } else if (t === "coin") {
+        var o = s.options || [T("heads"), T("tails")]; var res = store[s.id] = store[s.id] || {};
+        var shown = h("p", { "class": "note", "aria-live": "polite" });
+        var paint = function () { shown.textContent = res.result ? T("coinSays", { r: res.result }) : T("coinPick"); };
+        wrap.appendChild(h("p", { "class": "small muted", text: T("coinHT", { a: o[0], b: o[1] }) }));
+        wrap.appendChild(btn(T("flip"), function () { res.result = Math.random() < 0.5 ? o[0] : o[1]; paint(); ctx.changed(); upd(); }));
+        wrap.appendChild(shown); paint();
+        wrap.appendChild(txt(res.feel || "", T("coinFeel"), function (v) { res.feel = v; ctx.changed(); }, T("coinFeel")));
+      }
+      box.appendChild(wrap);
+    });
+    box.appendChild(verdict); upd();
+  }
+  function summarizeSteps(steps, store) {
+    var L = [];
+    steps.forEach(function (s) {
+      var v = store[s.id], t = s.type || "text", a = "";
+      if (t === "checks") a = (s.items || []).filter(function (x, i) { return v && v[i]; }).join("; ");
+      else if (t === "check") a = v ? "yes" : "";
+      else if (t === "coin") a = v && v.result ? v.result + (v.feel ? " (" + v.feel + ")" : "") : "";
+      else a = (v === undefined || v === null) ? "" : String(v);
+      if (a !== "") L.push("- " + s.q + " " + a);
+    });
+    return L;
+  }
+
+  /* ---------- renderers ---------- */
+  var R = {};
+  function activeCriteria(st) { return st.criteria.filter(function (c) { return c.scores.some(function (v) { return v !== "" && v != null; }); }); }
+
+  R.scorecard = {
+    init: function (cfg) {
+      var d = cfg.data || {};
+      var st = { options: (d.options || ["Option A", "Option B"]).slice(), criteria: clone(d.criteria || [{ name: "Criterion 1", weight: 3 }]), gut: d.gut || "" };
+      st.criteria.forEach(function (c) { c.weight = c.weight || 3; c.scores = (c.scores || []).slice(0, st.options.length); while (c.scores.length < st.options.length) c.scores.push(""); });
+      return st;
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var gut = h("select", { "aria-label": T("gutQ"), onchange: function () { st.gut = gut.value; ctx.changed(); upd(); } });
+      function fillGut() {
+        gut.textContent = ""; gut.appendChild(h("option", { value: "", text: T("noLean") }));
+        st.options.forEach(function (o, i) { var op = h("option", { value: String(i), text: o || "?" }); if (String(i) === String(st.gut)) op.selected = true; gut.appendChild(op); });
+      }
+      fillGut();
+      box.appendChild(h("div", { "class": "row" }, h("label", { text: T("gutQ") }), gut));
+      var thr = h("tr", null, h("th", { text: T("crit") }), h("th", { text: T("weight") }));
+      st.options.forEach(function (o, oi) {
+        thr.appendChild(h("th", null, txt(o, T("optName"), function (v) { st.options[oi] = v; fillGut(); ctx.changed(); upd(); }, T("optName") + " " + (oi + 1)),
+          st.options.length > 2 ? btn(T("remove"), function () { st.options.splice(oi, 1); st.criteria.forEach(function (c) { c.scores.splice(oi, 1); }); st.gut = ""; ctx.changed(); ctx.rerender(); }, "danger small") : null));
+      });
+      thr.appendChild(h("th", { text: "" }));
+      var tbl = h("table", { "class": "grid" }, thr);
+      var sc = [{ v: "", t: "-" }, { v: "1", t: "1" }, { v: "2", t: "2" }, { v: "3", t: "3" }, { v: "4", t: "4" }, { v: "5", t: "5" }];
+      st.criteria.forEach(function (c, ci) {
+        var tr = h("tr", null,
+          h("td", null, txt(c.name, T("crit"), function (v) { c.name = v; ctx.changed(); upd(); }, T("crit") + " " + (ci + 1))),
+          h("td", null, sel(sc.slice(1), c.weight, function (v) { c.weight = num(v); ctx.changed(); upd(); }, T("weight") + ": " + (c.name || ""))));
+        st.options.forEach(function (o, oi) {
+          tr.appendChild(h("td", null, sel(sc, c.scores[oi], function (v) { c.scores[oi] = v; ctx.changed(); upd(); }, (o || "") + " / " + (c.name || ""))));
+        });
+        tr.appendChild(h("td", null, st.criteria.length > 1 ? btn(T("remove"), function () { st.criteria.splice(ci, 1); ctx.changed(); ctx.rerender(); }, "danger small") : null));
+        tbl.appendChild(tr);
+      });
+      box.appendChild(h("div", { "class": "scroll" }, tbl));
+      box.appendChild(h("div", { "class": "row" },
+        btn(T("addOpt"), function () { st.options.push(T("optionN", { n: st.options.length + 1 })); st.criteria.forEach(function (c) { c.scores.push(""); }); ctx.changed(); ctx.rerender(); }),
+        btn(T("addCrit"), function () { st.criteria.push({ name: "", weight: 3, scores: st.options.map(function () { return ""; }) }); ctx.changed(); ctx.rerender(); })));
+      box.appendChild(h("p", { "class": "small muted", text: T("scoreLegend") }));
+      var out = h("div", { "class": "result", "aria-live": "polite" }); box.appendChild(out);
+      function upd() {
+        var act = activeCriteria(st), tw = act.reduce(function (a, c) { return a + num(c.weight); }, 0), max = tw * 5;
+        var rows = st.options.map(function (o, oi) {
+          var tot = 0, eq = 0, empty = 0;
+          act.forEach(function (c) { var s = c.scores[oi]; if (s === "" || s == null) empty++; else { tot += num(c.weight) * num(s); eq += num(s); } });
+          return { name: o || T("optionN", { n: oi + 1 }), i: oi, pct: max ? Math.round(tot / max * 100) : 0, eqpct: act.length ? Math.round(eq / (5 * act.length) * 100) : 0, empty: empty };
+        });
+        out.textContent = "";
+        if (!act.length) { out.appendChild(h("p", { "class": "muted", text: T("scoreAll") })); return; }
+        var rk = rows.slice().sort(function (a, b) { return b.pct - a.pct; });
+        out.appendChild(h("strong", { text: T("rankTitle") }));
+        rk.forEach(function (r, n) {
+          out.appendChild(h("div", { "class": "rank" }, h("strong", { text: r.name }), h("span", { text: "  " + r.pct + " / 100" + (r.empty ? "  " + T("nEmpty", { n: r.empty }) : "") }), n === 0 ? h("span", { "class": "tagtop", text: T("top") }) : null,
+            h("div", { "class": "meter" }, h("span", { style: "width:" + r.pct + "%" }))));
+        });
+        var notes = [];
+        if (rk.length > 1 && rk[0].pct - rk[1].pct < 8) notes.push(T("closeCall"));
+        var eqw = rows.slice().sort(function (a, b) { return b.eqpct - a.eqpct; })[0];
+        if (eqw && eqw.i !== rk[0].i && eqw.eqpct > 0) notes.push(T("eqWin", { name: eqw.name }));
+        if (st.gut !== "" && rows[Number(st.gut)]) {
+          var g = rows[Number(st.gut)];
+          notes.push(g.i === rk[0].i ? T("gutAgree") : T("gutDiff", { a: g.name, b: rk[0].name }));
+        }
+        if (st.criteria.length > 7) notes.push(T("manyCrit"));
+        if (st.options.length > 5) notes.push(T("manyOpt"));
+        if (notes.length) out.appendChild(note("", list(notes), "warn"));
+      }
+      upd();
+    },
+    summary: function (cfg, st) {
+      var act = activeCriteria(st), tw = act.reduce(function (a, c) { return a + num(c.weight); }, 0) * 5, L = [];
+      st.options.forEach(function (o, oi) {
+        var tot = 0; act.forEach(function (c) { if (c.scores[oi] !== "" && c.scores[oi] != null) tot += num(c.weight) * num(c.scores[oi]); });
+        L.push("- " + (o || T("optionN", { n: oi + 1 })) + ": " + (tw ? Math.round(tot / tw * 100) : 0) + " / 100");
+      });
+      L.push(T("sumCrit") + ": " + st.criteria.map(function (c) { return (c.name || "?") + " (" + c.weight + ")"; }).join(", "));
+      if (st.gut !== "" && st.options[Number(st.gut)] != null) L.push(T("sumGut") + ": " + st.options[Number(st.gut)]);
+      return L;
+    }
+  };
+
+  R.quadrant = {
+    init: function (cfg) {
+      var d = cfg.data || {};
+      return { items: (d.items || []).map(function (x) { return typeof x === "string" ? { text: x, q: "" } : { text: x.text, q: x.q || "" }; }) };
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var keys = ["tl", "tr", "bl", "br"], QC = ["--SM", "--AC", "--MD", "--GM"], Q = cfg.quadrants || {}, ax = cfg.axes || {};
+      if (ax.x || ax.y) box.appendChild(h("p", { "class": "small muted", text:
+        (ax.y ? T("axisUp", { a: ax.y.high || "high", b: ax.y.low || "low", l: ax.y.label || "" }) + " " : "") +
+        (ax.x ? T("axisRight", { a: ax.x.high || "high", b: ax.x.low || "low", l: ax.x.label || "" }) : "") }));
+      var inp = txt("", cfg.itemPlaceholder || T("itemPh"), function () {}, T("newItem"));
+      function addItem() { var v = inp.value.trim(); if (!v) return; st.items.push({ text: v, q: "" }); ctx.changed(); ctx.rerender(); }
+      inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); addItem(); } });
+      box.appendChild(h("div", { "class": "row" }, h("div", { style: "flex:1;min-width:200px" }, inp), btn(T("add"), addItem, "solid")));
+      var opts = [{ v: "", t: T("notPlaced") }].concat(keys.map(function (k) { return { v: k, t: (Q[k] && Q[k].name) || k }; }));
+      function chip(it) {
+        var n = keys.indexOf(it.q), c = n >= 0 ? QC[n] : "--ALL";
+        return h("div", { "class": "item", style: "--c:" + colorVar(c) }, h("span", { text: it.text }),
+          sel(opts, it.q, function (v) { it.q = v; ctx.changed(); ctx.rerender(); }, T("moveTo", { x: it.text })),
+          rmBtn(T("removeX", { x: it.text }), function () { st.items.splice(st.items.indexOf(it), 1); ctx.changed(); ctx.rerender(); }));
+      }
+      var un = st.items.filter(function (i) { return !i.q; });
+      if (un.length) { box.appendChild(h("h3", { "class": "h3", text: T("notPlaced") })); un.forEach(function (i) { box.appendChild(chip(i)); }); }
+      var grid = h("div", { "class": "quad" });
+      keys.forEach(function (k, n) {
+        var q = Q[k] || {}, cell = h("div", { "class": "cell", style: "--c:" + colorVar(QC[n]) }, h("h3", { text: q.name || k }), q.when ? h("div", { "class": "when", text: q.when }) : null, q.action ? h("div", { "class": "act", text: q.action }) : null);
+        st.items.filter(function (i) { return i.q === k; }).forEach(function (i) { cell.appendChild(chip(i)); });
+        grid.appendChild(cell);
+      });
+      box.appendChild(grid);
+    },
+    summary: function (cfg, st) {
+      var Q = cfg.quadrants || {}, L = [];
+      ["tl", "tr", "bl", "br"].forEach(function (k) {
+        var it = st.items.filter(function (i) { return i.q === k; }).map(function (i) { return i.text; });
+        if (it.length) L.push("- " + ((Q[k] && Q[k].name) || k) + (Q[k] && Q[k].action ? " (" + Q[k].action + ")" : "") + ": " + it.join("; "));
+      });
+      var un = st.items.filter(function (i) { return !i.q; }).map(function (i) { return i.text; });
+      if (un.length) L.push("- " + T("sumNotPlaced") + ": " + un.join("; "));
+      return L;
+    }
+  };
+
+  R.forces = {
+    init: function (cfg) {
+      var d = cfg.data || {}, fix = function (a) { return (a || []).map(function (x) { return typeof x === "string" ? { text: x, score: 3 } : { text: x.text, score: x.score || 3 }; }); };
+      return { left: fix(d.left), right: fix(d.right) };
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var cols = h("div", { "class": "cols" }), out = h("div", { "class": "result", "aria-live": "polite" });
+      var sc = [1, 2, 3, 4, 5].map(function (n) { return { v: String(n), t: String(n) }; });
+      var LT = cfg.leftTitle || T("forL"), RT = cfg.rightTitle || T("againstL");
+      function side(key, title, hint, color) {
+        var col = h("div", { "class": "col", style: "--c:" + colorVar(color) }, h("h3", { text: title }), hint ? h("div", { "class": "hint", text: hint }) : null);
+        st[key].forEach(function (it, ix) {
+          col.appendChild(h("div", { "class": "line" }, txt(it.text, T("describe"), function (v) { it.text = v; ctx.changed(); upd(); }, title + " " + (ix + 1)),
+            sel(sc, it.score, function (v) { it.score = num(v); ctx.changed(); upd(); }, T("strength")),
+            rmBtn(T("remove"), function () { st[key].splice(ix, 1); ctx.changed(); ctx.rerender(); })));
+        });
+        col.appendChild(btn(T("add"), function () { st[key].push({ text: "", score: 3 }); ctx.changed(); ctx.rerender(); }, "small"));
+        return col;
+      }
+      cols.appendChild(side("left", LT, cfg.leftHint, "--AC")); cols.appendChild(side("right", RT, cfg.rightHint, "--GM"));
+      box.appendChild(h("p", { "class": "small muted", text: T("forcesHelp") }));
+      box.appendChild(cols); box.appendChild(out);
+      function top(a) { return a.slice().sort(function (x, y) { return y.score - x.score; }).filter(function (x) { return x.text; })[0]; }
+      function upd() {
+        var l = st.left.reduce(function (a, x) { return a + num(x.score); }, 0), r = st.right.reduce(function (a, x) { return a + num(x.score); }, 0), t = l + r;
+        out.textContent = "";
+        if (!t) { out.appendChild(h("p", { "class": "muted", text: T("addItems") })); return; }
+        var lp = Math.round(l / t * 100);
+        out.appendChild(h("strong", { text: LT + ": " + l + "   |   " + RT + ": " + r }));
+        out.appendChild(h("div", { "class": "meter", style: "--c:var(--AC);background:var(--GM)" }, h("span", { style: "width:" + lp + "%" })));
+        var diff = Math.abs(l - r) / t, msg = diff < 0.1 ? (cfg.balanced || T("balDef")) : (l > r ? (cfg.leftWins || T("lDef")) : (cfg.rightWins || T("rDef")));
+        out.appendChild(h("p", { text: msg }));
+        var tl = top(st.left), tr = top(st.right);
+        if (tl || tr) out.appendChild(h("p", { "class": "small muted", text: T("biggest") + ": " + (tl ? LT + " = " + tl.text : "") + (tl && tr ? "  |  " : "") + (tr ? RT + " = " + tr.text : "") }));
+        if (cfg.tip) out.appendChild(note("", cfg.tip));
+      }
+      upd();
+    },
+    summary: function (cfg, st) {
+      var f = function (a) { return a.filter(function (x) { return x.text; }).map(function (x) { return x.text + " (" + x.score + ")"; }).join("; ") || T("none"); };
+      return ["- " + (cfg.leftTitle || T("forL")) + ": " + f(st.left), "- " + (cfg.rightTitle || T("againstL")) + ": " + f(st.right)];
+    }
+  };
+
+  R.lists = {
+    init: function (cfg) {
+      var items = (cfg.data && cfg.data.items) || [];
+      return { cols: (cfg.columns || []).map(function (c, i) { return (items[i] || []).slice(); }) };
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var CC = ["--AC", "--SM", "--GM", "--MD", "--OD", "--OM", "--AD"];
+      var wrap = h("div", { "class": "cols" + (cfg.layout === "rows" ? " rows1" : "") });
+      (cfg.columns || []).forEach(function (c, ci) {
+        var col = h("div", { "class": "col", style: "--c:" + colorVar(CC[ci % CC.length]) }, h("h3", { text: c.name }), c.hint ? h("div", { "class": "hint", text: c.hint }) : null);
+        st.cols[ci].forEach(function (v, ix) {
+          col.appendChild(h("div", { "class": "line two" }, txt(v, T("writeHere"), function (nv) { st.cols[ci][ix] = nv; ctx.changed(); }, c.name + " " + (ix + 1)),
+            rmBtn(T("remove"), function () { st.cols[ci].splice(ix, 1); ctx.changed(); ctx.rerender(); })));
+        });
+        col.appendChild(btn(T("add"), function () { st.cols[ci].push(""); ctx.changed(); ctx.rerender(); }, "small"));
+        wrap.appendChild(col);
+      });
+      box.appendChild(wrap);
+    },
+    summary: function (cfg, st) {
+      return (cfg.columns || []).map(function (c, i) { return "- " + c.name + ": " + (st.cols[i].filter(Boolean).join("; ") || T("none")); });
+    }
+  };
+
+  R.tree = {
+    init: function (cfg) {
+      var d = cfg.data || {};
+      return { unit: d.unit || "", options: clone(d.options || [{ name: "Option A", cost: 0, outcomes: [{ label: "Good case", p: 50, payoff: 0 }, { label: "Bad case", p: 50, payoff: 0 }] }]) };
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      box.appendChild(h("div", { "class": "row" }, h("label", { text: T("unitL") }), h("div", { style: "width:120px" }, txt(st.unit, "$", function (v) { st.unit = v; ctx.changed(); upd(); }, T("unitL")))));
+      st.options.forEach(function (o, oi) {
+        var card = h("div", { "class": "opt-card", style: "--c:" + colorVar(TOOLC[(oi + 2) % TOOLC.length]) });
+        card.appendChild(h("div", { "class": "line two" }, txt(o.name, T("optName"), function (v) { o.name = v; ctx.changed(); upd(); }, T("optName")),
+          st.options.length > 1 ? btn(T("rmOption"), function () { st.options.splice(oi, 1); ctx.changed(); ctx.rerender(); }, "danger small") : null));
+        card.appendChild(h("div", { "class": "row" }, h("label", { text: T("costL") }), h("div", { style: "width:140px" }, numIn(o.cost, function (v) { o.cost = num(v); ctx.changed(); upd(); }, T("costL")))));
+        card.appendChild(h("div", { "class": "row muted small" }, h("div", { style: "flex:2;min-width:150px", text: T("happen") }), h("div", { style: "width:110px", text: T("chance") }), h("div", { style: "width:130px", text: T("payoff") })));
+        o.outcomes.forEach(function (oc, ci) {
+          card.appendChild(h("div", { "class": "row" },
+            h("div", { style: "flex:2;min-width:150px" }, txt(oc.label, T("happen"), function (v) { oc.label = v; ctx.changed(); upd(); }, T("outcomeLabel"))),
+            h("div", { style: "width:110px" }, numIn(oc.p, function (v) { oc.p = num(v); ctx.changed(); upd(); }, T("chance"), "%")),
+            h("div", { style: "width:130px" }, numIn(oc.payoff, function (v) { oc.payoff = num(v); ctx.changed(); upd(); }, T("payoff"), "")),
+            o.outcomes.length > 1 ? rmBtn(T("remove"), function () { o.outcomes.splice(ci, 1); ctx.changed(); ctx.rerender(); }) : null));
+        });
+        card.appendChild(btn(T("addOutcome"), function () { o.outcomes.push({ label: "", p: 0, payoff: 0 }); ctx.changed(); ctx.rerender(); }, "small"));
+        box.appendChild(card);
+      });
+      box.appendChild(h("div", { "class": "row" }, btn(T("addOpt"), function () { st.options.push({ name: T("optionN", { n: st.options.length + 1 }), cost: 0, outcomes: [{ label: "", p: 50, payoff: 0 }, { label: "", p: 50, payoff: 0 }] }); ctx.changed(); ctx.rerender(); })));
+      var out = h("div", { "class": "result", "aria-live": "polite" }); box.appendChild(out);
+      function calc(o) {
+        var ps = o.outcomes.reduce(function (a, x) { return a + num(x.p); }, 0);
+        var ev = o.outcomes.reduce(function (a, x) { return a + num(x.p) / 100 * num(x.payoff); }, 0) - num(o.cost);
+        var pays = o.outcomes.map(function (x) { return num(x.payoff) - num(o.cost); });
+        return { name: o.name || T("optionN", { n: 0 }), ps: ps, ev: ev, worst: Math.min.apply(null, pays), best: Math.max.apply(null, pays) };
+      }
+      function upd() {
+        var u = st.unit ? " " + st.unit : "", rows = st.options.map(calc), notes = [];
+        out.textContent = "";
+        var rk = rows.slice().sort(function (a, b) { return b.ev - a.ev; });
+        out.appendChild(h("strong", { text: T("evTitle") }));
+        rk.forEach(function (r, n) {
+          out.appendChild(h("div", { "class": "rank" }, h("strong", { text: r.name }), n === 0 ? h("span", { "class": "tagtop", text: T("top") }) : null,
+            h("div", { text: T("evLine", { ev: fmt(r.ev) + u, w: fmt(r.worst) + u, b: fmt(r.best) + u }) })));
+          if (Math.round(r.ps) !== 100) notes.push(T("chanceBad", { name: r.name, n: fmt(r.ps) }));
+        });
+        if (rk.length > 1 && rk[0].worst < 0) { var safe = rk.filter(function (r) { return r.worst >= 0; })[0]; if (safe) notes.push(T("riskNote", { a: rk[0].name, b: safe.name })); }
+        notes.push(T("estNote"));
+        out.appendChild(note("", list(notes), "warn"));
+      }
+      upd();
+    },
+    summary: function (cfg, st) {
+      var u = st.unit ? " " + st.unit : "";
+      return st.options.map(function (o) {
+        var ev = o.outcomes.reduce(function (a, x) { return a + num(x.p) / 100 * num(x.payoff); }, 0) - num(o.cost);
+        return "- " + (o.name || "?") + ": " + T("sumExpected") + " " + fmt(ev) + u + " (" + T("sumCost") + " " + fmt(num(o.cost)) + u + "; " + o.outcomes.map(function (x) { return (x.label || "?") + " " + num(x.p) + "% -> " + fmt(num(x.payoff)) + u; }).join(", ") + ")";
+      });
+    }
+  };
+
+  R.horizons = {
+    init: function (cfg) {
+      var d = cfg.data || {};
+      return { options: (d.options || ["Option A", "Option B"]).slice(), cells: clone(d.cells || {}) };
+    },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var H = cfg.horizons || [{ label: "Soon" }, { label: "Later" }], lb = cfg.scaleLabels || { "-2": "Very bad", "0": "Neutral", "2": "Very good" };
+      box.appendChild(h("p", { "class": "small muted", text: T("rateHelp", { a: lb["-2"], b: lb["0"], c: lb["2"] }) }));
+      st.options.forEach(function (o, oi) {
+        var card = h("div", { "class": "opt-card", style: "--c:" + colorVar(TOOLC[(oi + 1) % TOOLC.length]) });
+        card.appendChild(h("div", { "class": "line two" }, txt(o, T("optName"), function (v) { st.options[oi] = v; ctx.changed(); upd(); }, T("optName")),
+          st.options.length > 1 ? btn(T("remove"), function () { st.options.splice(oi, 1); st.cells = {}; ctx.changed(); ctx.rerender(); }, "danger small") : null));
+        H.forEach(function (hz, hi) {
+          var key = oi + "|" + hi, cell = st.cells[key] = st.cells[key] || { r: "", note: "" }, bs = [];
+          var sc = h("div", { "class": "scale", role: "group", "aria-label": (o || "") + " / " + hz.label });
+          [-2, -1, 0, 1, 2].forEach(function (n) {
+            var b = h("button", { type: "button", text: (n > 0 ? "+" : "") + n, "aria-pressed": String(cell.r === n), onclick: function () {
+              cell.r = cell.r === n ? "" : n; bs.forEach(function (x) { x.b.setAttribute("aria-pressed", String(cell.r === x.n)); }); ctx.changed(); upd(); } });
+            bs.push({ b: b, n: n }); sc.appendChild(b);
+          });
+          card.appendChild(h("div", { "class": "step", style: "--c:var(--ALL)" }, h("div", { "class": "q", text: hz.label }), hz.help ? h("div", { "class": "muted small", text: hz.help }) : null, sc,
+            h("div", { style: "margin-top:8px" }, txt(cell.note, T("why2"), function (v) { cell.note = v; ctx.changed(); }, hz.label))));
+        });
+        box.appendChild(card);
+      });
+      box.appendChild(h("div", { "class": "row" }, btn(T("addOpt"), function () { st.options.push(T("optionN", { n: st.options.length + 1 })); ctx.changed(); ctx.rerender(); })));
+      var out = h("div", { "class": "result", "aria-live": "polite" }); box.appendChild(out);
+      function upd() {
+        out.textContent = "";
+        var any = false, notes = [];
+        st.options.forEach(function (o, oi) {
+          var vals = H.map(function (hz, hi) { var c = st.cells[oi + "|" + hi]; return c && c.r !== "" && c.r != null ? c.r : null; });
+          var got = vals.filter(function (v) { return v !== null; });
+          if (!got.length) return; any = true;
+          var sum = got.reduce(function (a, b) { return a + b; }, 0), first = vals[0], last = vals[vals.length - 1], name = o || "?";
+          out.appendChild(h("div", { "class": "rank" }, h("strong", { text: name }), h("span", { text: "  " + T("hTotal", { s: (sum > 0 ? "+" : "") + sum, n: got.length }) })));
+          if (first !== null && last !== null) {
+            if (first > 0 && last < 0) notes.push(T("pSoonBad", { name: name }));
+            else if (first < 0 && last > 0) notes.push(T("pLaterGood", { name: name }));
+            else if (first >= 1 && last >= 1) notes.push(T("pAllGood", { name: name }));
+            else if (first <= -1 && last <= -1) notes.push(T("pAllBad", { name: name }));
+          }
+        });
+        if (!any) { out.appendChild(h("p", { "class": "muted", text: T("rateOne") })); return; }
+        if (notes.length) out.appendChild(note("", list(notes), "warn"));
+      }
+      upd();
+    },
+    summary: function (cfg, st) {
+      var H = cfg.horizons || [];
+      return st.options.map(function (o, oi) {
+        return "- " + (o || "?") + ": " + H.map(function (hz, hi) { var c = st.cells[oi + "|" + hi]; return hz.label + " = " + (c && c.r !== "" && c.r != null ? (c.r > 0 ? "+" : "") + c.r : "?") + (c && c.note ? " (" + c.note + ")" : ""); }).join("; ");
+      });
+    }
+  };
+
+  R.flow = {
+    init: function (cfg) { return { path: [], node: (cfg.data && cfg.data.start) || "start" }; },
+    render: function (box, cfg, st, ctx) {
+      box.textContent = "";
+      var nodes = (cfg.data && cfg.data.nodes) || {}, start = (cfg.data && cfg.data.start) || "start", n = nodes[st.node];
+      if (!n) { box.appendChild(h("p", { text: T("flowBad") })); return; }
+      box.appendChild(h("div", { "class": "fleg" },
+        h("div", null, h("span", { "class": "sw start" }), T("fStart")), h("div", null, h("span", { "class": "sw dec" }), T("fQuestion")), h("div", null, h("span", { "class": "sw end" }), T("fEnd"))));
+      var chain = h("div", { "class": "chain" });
+      chain.appendChild(h("div", { "class": "pill start", text: T("fStart") }));
+      st.path.forEach(function (p) {
+        chain.appendChild(h("div", { "class": "arrow" }));
+        chain.appendChild(h("div", { "class": "hexw done" }, h("div", { "class": "hexin", text: p.q })));
+        chain.appendChild(h("div", { "class": "arrow" }, h("span", { "class": "el", text: p.a })));
+      });
+      if (!st.path.length) chain.appendChild(h("div", { "class": "arrow" }));
+      if (n.outcome) {
+        var o = n.outcome;
+        chain.appendChild(h("div", { "class": "pill end", "aria-live": "polite" }, h("h3", { "class": "ck", text: o.title }), h("p", { text: o.text }),
+          o.next && o.next.length ? h("div", null, h("b", { text: T("nextSteps") }), list(o.next)) : null));
+      } else {
+        chain.appendChild(h("div", { "class": "hexw" }, h("div", { "class": "hexin" }, n.q, n.help ? h("div", { "class": "help", text: n.help }) : null)));
+        chain.appendChild(h("div", { "class": "arrow" }));
+        var ch = h("div", { "class": "choices" });
+        (n.options || []).forEach(function (op) {
+          ch.appendChild(btn(op.label, function () { st.path.push({ q: n.q, a: op.label }); st.node = op.next; ctx.changed(); ctx.rerender(); }));
+        });
+        chain.appendChild(ch);
+      }
+      box.appendChild(chain);
+      function replay() {
+        var cur = start;
+        st.path.forEach(function (p) { var nd = nodes[cur]; var m = (nd.options || []).filter(function (o) { return o.label === p.a; })[0]; if (m) cur = m.next; });
+        return cur;
+      }
+      if (st.path.length) box.appendChild(h("div", { "class": "row", style: "justify-content:center" },
+        btn(T("back"), function () { st.path.pop(); st.node = replay(); ctx.changed(); ctx.rerender(); }, "small"),
+        btn(T("again"), function () { st.path = []; st.node = start; ctx.changed(); ctx.rerender(); }, "small")));
+    },
+    summary: function (cfg, st) {
+      var nodes = (cfg.data && cfg.data.nodes) || {}, n = nodes[st.node], L = st.path.map(function (p) { return "- " + p.q + " " + p.a; });
+      if (n && n.outcome) L.push(T("sumResult") + ": " + n.outcome.title + ". " + n.outcome.text);
+      return L;
+    }
+  };
+
+  R.guided = {
+    init: function (cfg) { return { answers: clone((cfg.data && cfg.data.answers) || {}) }; },
+    render: function (box, cfg, st, ctx) { box.textContent = ""; renderSteps(box, cfg.steps || [], st.answers, ctx, cfg.rules); },
+    summary: function (cfg, st) {
+      var L = summarizeSteps(cfg.steps || [], st.answers), m = evalRules(cfg.rules, cfg.steps || [], st.answers);
+      if (m.length) L.push(T("sumSuggest") + ": " + m.join(" "));
+      return L;
+    }
+  };
+
+  /* ---------- page ---------- */
+  function knownOptions() {
+    var out = [];
+    state.tools.forEach(function (ts) {
+      var st = ts && ts.main; if (!st || !st.options) return;
+      st.options.forEach(function (o) { var n = typeof o === "string" ? o : o && o.name; if (n && out.indexOf(n) < 0) out.push(n); });
+    });
+    return out;
+  }
+  function buildSummary() {
+    var P = CFG.problem, L = [];
+    L.push(T("sumHead") + ": " + (CFG.meta.title || ""));
+    if (CFG.meta.created) L.push(T("sumCreated") + ": " + CFG.meta.created);
+    L.push("", T("sumQ") + ": " + (P.decisionQuestion || P.statement || ""));
+    if (P.statement && P.statement !== P.decisionQuestion) L.push(T("sumProblem") + ": " + P.statement);
+    ["deadline", "owner", "stakes", "reversibility", "background"].forEach(function (k) { if (P[k]) L.push(T(k) + ": " + P[k]); });
+    (CFG.context || []).forEach(function (c) { L.push(c.label + ": " + c.value); });
+    if (CFG.assumptions && CFG.assumptions.length) L.push(T("sumAssump") + ": " + CFG.assumptions.join("; "));
+    CFG.tools.forEach(function (t, i) {
+      var r = R[t.renderer]; if (!r) return;
+      L.push("", "== " + (t.title || t.preset || t.renderer) + " ==");
+      L = L.concat(r.summary(t, state.tools[i].main));
+      if (t.prompts && t.prompts.length) L = L.concat(summarizeSteps(t.prompts, state.tools[i].prompts));
+    });
+    var f = state.final;
+    L.push("", "== " + T("sumMy") + " ==", T("sumStatus") + ": " + (f.status || T("statusNo")));
+    if (f.choice) L.push(T("sumChoice") + ": " + f.choice);
+    if (f.reason) L.push(T("sumWhy") + ": " + f.reason);
+    if (f.confidence) L.push(T("sumConf") + ": " + f.confidence);
+    if (f.firstStep) L.push(T("sumStep") + ": " + f.firstStep);
+    if (f.reviewDate) L.push(T("sumReview") + ": " + f.reviewDate);
+    if (f.tripwire) L.push(T("sumTrip") + ": " + f.tripwire);
+    return L.join("\n");
+  }
+  function persist() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ app: "decision-tool-builder", version: 2, savedAt: new Date().toISOString(), state: state })); } catch (e) { /* storage may be blocked */ }
+  }
+  function refreshDatalist() {
+    var dl = document.getElementById("known-options"); if (!dl) return;
+    dl.textContent = ""; knownOptions().forEach(function (o) { dl.appendChild(h("option", { value: o })); });
+  }
+  function refreshChip() {
+    var c = document.getElementById("dstat"); if (!c) return;
+    var F = state.final, yes = F.status === T("statusYes");
+    c.className = "dstat" + (yes ? " yes" : "");
+    c.textContent = yes ? (F.choice ? T("chipYes", { choice: F.choice }) : T("chipMade")) : T("chipNo");
+  }
+  var base = { changed: function () { clearTimeout(saveTimer); saveTimer = setTimeout(persist, 400); refreshDatalist(); refreshChip(); } };
+
+  function initState(restored) {
+    state = { tools: [], final: {} };
+    CFG.tools.forEach(function (t, i) {
+      var r = R[t.renderer], rs = restored && restored.tools && restored.tools[i];
+      state.tools.push({ main: rs && rs.main ? rs.main : (r ? r.init(t) : {}), prompts: rs && rs.prompts ? rs.prompts : {} });
+    });
+    if (restored && restored.final) state.final = restored.final;
+  }
+  function field(label, node) { return h("div", { "class": "field" }, h("label", { text: label }), node); }
+
+  function renderFinal() {
+    var F = state.final, fs = CFG.finalStep || {};
+    var sec = h("section", { "class": "tool final", id: "sec-final" });
+    sec.appendChild(h("div", { "class": "shead" }, h("div", { "class": "sticky", style: "--c:var(--AD)" }, h("b", { text: T("finalTitle") })), h("p", { "class": "sgoal", text: fs.prompt || T("finalPrompt") })));
+    var card = h("div", { "class": "card", style: "--c:var(--AD)" });
+    var st = h("div", { "class": "decs", role: "group", "aria-label": T("sumStatus") }), sb = [];
+    [T("statusNo"), T("statusYes")].forEach(function (s, ix) {
+      var b = h("button", { type: "button", "class": "dbtn" + (ix ? " yes" : ""), text: s, "aria-pressed": String(F.status === s), onclick: function () { F.status = s; sb.forEach(function (x) { x.b.setAttribute("aria-pressed", String(F.status === x.s)); }); base.changed(); } });
+      sb.push({ b: b, s: s }); st.appendChild(b);
+    });
+    card.appendChild(st);
+    var ch = txt(F.choice || "", T("choicePh"), function (v) { F.choice = v; base.changed(); }, T("choice")); ch.setAttribute("list", "known-options");
+    card.appendChild(h("datalist", { id: "known-options" }));
+    card.appendChild(field(T("choice"), ch));
+    var why = h("textarea", { "aria-label": T("reason"), oninput: function () { F.reason = why.value; base.changed(); } }); why.value = F.reason || "";
+    card.appendChild(field(T("reason"), why));
+    var conf = h("div", { "class": "scale", role: "group", "aria-label": T("conf") }), cb = [];
+    [1, 2, 3, 4, 5].forEach(function (n) { var b = h("button", { type: "button", text: String(n), "aria-pressed": String(F.confidence === n), onclick: function () { F.confidence = F.confidence === n ? "" : n; cb.forEach(function (x) { x.b.setAttribute("aria-pressed", String(F.confidence === x.n)); }); base.changed(); } }); cb.push({ b: b, n: n }); conf.appendChild(b); });
+    card.appendChild(field(T("conf"), conf));
+    card.appendChild(field(T("step1"), txt(F.firstStep || "", T("step1Ph"), function (v) { F.firstStep = v; base.changed(); }, T("step1"))));
+    var rd = h("input", { type: "date", "aria-label": T("review"), onchange: function () { F.reviewDate = rd.value; base.changed(); } }); rd.value = F.reviewDate || "";
+    card.appendChild(field(T("review"), rd));
+    card.appendChild(field(T("trip"), txt(F.tripwire || "", T("tripPh"), function (v) { F.tripwire = v; base.changed(); }, T("trip"))));
+    sec.appendChild(card);
+    return sec;
+  }
+
+  function renderBar() {
+    var bar = document.getElementById("bar"); bar.textContent = "";
+    bar.appendChild(h("b", { text: CFG.meta.shortTitle || CFG.meta.title || "Decision tool" }));
+    var nav = h("nav", { "class": "filters", "aria-label": "Sections" });
+    nav.appendChild(h("a", { "class": "fchip", href: "#sec-problem" }, h("i"), T("navProblem")));
+    CFG.tools.forEach(function (t, i) { nav.appendChild(h("a", { "class": "fchip", href: "#sec-tool-" + i, style: "--c:" + colorVar(TOOLC[i % TOOLC.length]) }, h("i"), t.shortTitle || t.title || t.preset)); });
+    nav.appendChild(h("a", { "class": "fchip", href: "#sec-final", style: "--c:var(--AD)" }, h("i"), T("navDecision")));
+    bar.appendChild(nav);
+    var fi = h("input", { type: "file", accept: ".json,application/json", "class": "hidden", id: "file-in", onchange: function () { if (fi.files[0]) load(fi.files[0]); fi.value = ""; } });
+    bar.appendChild(h("div", { "class": "acts" }, h("span", { id: "dstat", "class": "dstat", role: "status" }),
+      btn(T("save"), save, "solid"), btn(T("load"), function () { fi.click(); }), h("button", { type: "button", id: "printBtn", "class": "btn", text: T("print"), onclick: function () { window.print(); } }), fi,
+      h("span", { id: "msg", role: "status", "aria-live": "polite" })));
+    refreshChip();
+  }
+
+  function render() {
+    app.textContent = "";
+    var P = CFG.problem;
+    document.title = CFG.meta.title || "Decision tool";
+    var hero = h("div", { "class": "hero", id: "sec-problem" }, h("h1", { text: CFG.meta.title || "Decision tool" }), P.statement ? h("p", { text: P.statement }) : null);
+    var stats = [[T("deadline"), P.deadline], [T("stakes"), P.stakes], [T("reversibility"), P.reversibility], [T("owner"), P.owner]].filter(function (x) { return x[1]; });
+    if (stats.length) hero.appendChild(h("div", { "class": "stats" }, stats.map(function (x) { return h("span", { "class": "stat" }, h("b", { text: x[0] }), x[1]); })));
+    app.appendChild(hero);
+
+    var row = h("div", { "class": "intro-row" });
+    if (P.decisionQuestion) row.appendChild(h("div", { "class": "sticky q", style: "--c:var(--SM)" }, h("b", { text: P.decisionQuestion })));
+    var facts = [].concat(P.background ? [[T("background"), P.background]] : []).concat((CFG.context || []).map(function (c) { return [c.label, c.value]; })).filter(function (x) { return x[1]; });
+    if (facts.length) { var dl = h("dl", { "class": "facts" }); facts.forEach(function (f) { dl.appendChild(h("dt", { text: f[0] })); dl.appendChild(h("dd", { text: String(f[1]) })); }); row.appendChild(h("div", { "class": "panel" }, h("h2", { text: T("situation") }), dl)); }
+    if (row.childNodes.length) app.appendChild(row);
+
+    if (CFG.assumptions && CFG.assumptions.length) app.appendChild(h("div", { "class": "panel" }, h("h2", null, T("assumptions"), h("i", { "class": "tbc", text: T("toConfirm") })), list(CFG.assumptions)));
+    var TS = CFG.toolSelection;
+    if (TS && TS.why) {
+      var also = (TS.alsoConsider || []).map(function (a) { return a.name ? a.name + ": " + a.why : a; });
+      app.appendChild(h("div", { "class": "panel", id: "sec-why" }, h("h2", { text: T("why") }), h("p", { text: TS.why }), also.length ? h("div", null, h("p", { "class": "small muted", text: T("also") }), list(also)) : null));
+    }
+
+    CFG.tools.forEach(function (t, i) {
+      var r = R[t.renderer], ts = state.tools[i], color = TOOLC[i % TOOLC.length];
+      var sec = h("section", { "class": "tool", id: "sec-tool-" + i, style: "--c:" + colorVar(color) });
+      sec.appendChild(h("div", { "class": "shead" },
+        h("div", { "class": "sticky", style: "--c:" + colorVar(color) }, h("b", { text: t.title || t.preset }), h("span", { text: (i === 0 ? T("mainTool") : T("secondTool")) + (t.source ? " | " + t.source : "") })),
+        t.intro ? h("p", { "class": "sgoal", text: t.intro }) : null));
+      if (!r) { sec.appendChild(h("p", { text: T("brokenTool", { t: t.renderer }) })); app.appendChild(sec); return; }
+      var card = h("div", { "class": "card", style: "--c:" + colorVar(color) });
+      if (t.how && t.how.length) { card.appendChild(h("h3", { "class": "h3", style: "margin-top:0", text: T("how") })); card.appendChild(h("ul", { "class": "legend-list" }, t.how.map(function (x, n) { return h("li", null, h("span", { "class": "n", text: String(n + 1) }), h("span", { text: x })); }))); }
+      var box = h("div"), txtBox = h("ul");
+      function refreshText() {
+        txtBox.textContent = "";
+        var lines = r.summary(t, ts.main); if (t.prompts && t.prompts.length) lines = lines.concat(summarizeSteps(t.prompts, ts.prompts));
+        lines.forEach(function (l) { txtBox.appendChild(h("li", { text: l.replace(/^- /, "") })); });
+      }
+      var ctx = { changed: function () { base.changed(); refreshText(); }, rerender: function () { r.render(box, t, ts.main, ctx); refreshText(); } };
+      card.appendChild(box); r.render(box, t, ts.main, ctx);
+      if (t.prompts && t.prompts.length) {
+        card.appendChild(h("h3", { "class": "h3", text: t.promptsTitle || T("think") }));
+        var pb = h("div"); card.appendChild(pb); renderSteps(pb, t.prompts, ts.prompts, ctx, t.promptRules);
+      }
+      if (t.readout) card.appendChild(note(T("readout"), h("p", { text: t.readout })));
+      card.appendChild(h("details", { "class": "txt" }, h("summary", { text: T("asText") }), txtBox)); refreshText();
+      sec.appendChild(card); app.appendChild(sec);
+    });
+
+    app.appendChild(renderFinal());
+    var notes = (CFG.notes && CFG.notes.length) ? CFG.notes : [T("defaultNote")];
+    app.appendChild(h("section", { "class": "tool", id: "sec-notes" }, h("div", { "class": "panel" }, h("h2", { text: T("notes") }), list(notes))));
+    refreshDatalist(); refreshChip();
+  }
+
+  /* ---------- drawer (summary) ---------- */
+  var drawer = document.getElementById("drawer");
+  function openDrawer() {
+    lastFocus = document.activeElement;
+    drawer.textContent = "";
+    drawer.appendChild(h("button", { type: "button", "class": "btn x", text: T("close"), onclick: closeDrawer }));
+    drawer.appendChild(h("div", { "class": "band" }));
+    drawer.appendChild(h("h2", { id: "dtitle", text: T("sumTitle") }));
+    var ta = h("textarea", { id: "summary-text", readonly: true, "aria-label": T("sumTitle") }); ta.value = buildSummary();
+    drawer.appendChild(ta);
+    drawer.appendChild(h("div", { "class": "row" }, btn(T("copy"), copyText, "solid")));
+    drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false");
+    drawer.querySelector(".x").focus();
+  }
+  function closeDrawer() { drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true"); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && drawer.classList.contains("open")) closeDrawer(); });
+  function copyText() {
+    var ta = document.getElementById("summary-text"); ta.focus(); ta.select();
+    var done = false;
+    try { if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(ta.value); done = true; } } catch (e) { /* fall through */ }
+    if (!done) { try { done = document.execCommand("copy"); } catch (e) { done = false; } }
+    say(done ? T("copied") : T("copySel"));
+  }
+
+  function slug() { return (CFG.meta.id || (CFG.meta.title || "decision").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "decision"); }
+  function save() {
+    persist();
+    var payload = { app: "decision-tool-builder", version: 2, savedAt: new Date().toISOString(), meta: CFG.meta, state: state };
+    var name = "decision-" + slug() + "-" + new Date().toISOString().slice(0, 10) + ".json", ok = false;
+    try {
+      var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), url = URL.createObjectURL(blob);
+      var a = h("a", { href: url, download: name }); document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 1500); ok = true;
+    } catch (e) { ok = false; }
+    say(ok ? T("savedFile", { name: name }) : T("savedBrowser"));
+    openDrawer();
+  }
+  function load(file) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      try {
+        var p = JSON.parse(fr.result);
+        if (!p || p.app !== "decision-tool-builder" || !p.state) throw new Error("bad file");
+        initState(p.state); render(); renderBar(); say(T("loaded"));
+      } catch (e) { say(T("loadFail")); }
+    };
+    fr.readAsText(file);
+  }
+  function start() {
+    var restored = null;
+    try { var raw = localStorage.getItem(STORE_KEY); if (raw) { var p = JSON.parse(raw); if (p && p.app === "decision-tool-builder") restored = p.state; } } catch (e) { restored = null; }
+    initState(null); render(); renderBar();
+    if (restored) {
+      var b = h("div", { "class": "panel", role: "status" }, h("h2", { text: T("found") }),
+        h("div", { "class": "row" }, btn(T("restore"), function () { initState(restored); render(); renderBar(); say(T("restored")); }, "solid"), btn(T("fresh"), function () { try { localStorage.removeItem(STORE_KEY); } catch (e) { /* ignore */ } b.remove(); })));
+      app.insertBefore(b, app.firstChild);
+    }
+  }
+  window.__dtb = { R: R, state: function () { return state; }, summary: buildSummary };
+  start();
+})();
+</script>
+</body>
+</html>

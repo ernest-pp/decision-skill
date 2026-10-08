@@ -1,0 +1,2120 @@
+{
+  "weighted_matrix": {
+    "renderer": "scorecard",
+    "title": "Weighted decision matrix",
+    "source": "Decision matrix. Also called weighted scoring or Pugh matrix.",
+    "intro": "Score each option against the criteria. A criterion with a high weight has more effect on the result.",
+    "how": [
+      "Choose the option that you prefer now. Do this before you score. Your feeling is data.",
+      "Give each criterion a weight from 1 to 5.",
+      "Give each option a score from 1 to 5 for each criterion.",
+      "Read the ranking. Then read the notes below it."
+    ],
+    "readout": "The top score is a guide. It is not a verdict. If the score does not match your feeling, a criterion is missing or a weight is wrong. Find which one.",
+    "prompts": [
+      {
+        "id": "missing",
+        "q": "Does a criterion matter to you, but it is not in the table?",
+        "type": "text"
+      },
+      {
+        "id": "sensitivity",
+        "q": "Change your most important weight by one step. Does the winner change?",
+        "type": "choice",
+        "choices": [
+          "No, the winner stays the same",
+          "Yes, the winner changes",
+          "I did not test it"
+        ]
+      }
+    ]
+  },
+  "eisenhower": {
+    "renderer": "quadrant",
+    "title": "Eisenhower matrix: urgent or important?",
+    "source": "Eisenhower matrix. From The Decision Book.",
+    "intro": "Sort your tasks by importance and urgency. Then act on each group in a different way.",
+    "how": [
+      "Add each task that you must do now.",
+      "Put each task in one box.",
+      "Do the top-right box first. Plan the top-left box. Give the bottom-right box to another person. Do the bottom-left box later or remove it."
+    ],
+    "itemPlaceholder": "Type a task and press Add",
+    "axes": {
+      "x": {
+        "label": "Urgency",
+        "low": "not urgent",
+        "high": "urgent"
+      },
+      "y": {
+        "label": "Importance",
+        "low": "not important",
+        "high": "important"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Important, not urgent",
+        "when": "It matters much. The deadline is not near.",
+        "action": "Decide when to do it. Put it in your calendar."
+      },
+      "tr": {
+        "name": "Urgent and important",
+        "when": "It matters much. Time is short.",
+        "action": "Do it now."
+      },
+      "bl": {
+        "name": "Not important, not urgent",
+        "when": "It has little value. Time is not short.",
+        "action": "Do it later or remove it."
+      },
+      "br": {
+        "name": "Urgent, not important",
+        "when": "Time is short. It does not matter much.",
+        "action": "Give it to another person."
+      }
+    },
+    "readout": "If the top-left box is empty, you may work only on urgent tasks. Important tasks that you do not plan often become urgent."
+  },
+  "swot": {
+    "renderer": "lists",
+    "title": "SWOT analysis",
+    "source": "SWOT analysis. From The Decision Book.",
+    "intro": "Understand the situation before you choose a solution. List what helps and what hurts. Include factors inside and outside your control.",
+    "layout": "grid",
+    "columns": [
+      {
+        "name": "Strengths",
+        "hint": "Inside. What do we do well?"
+      },
+      {
+        "name": "Opportunities",
+        "hint": "Outside. Which chances can we use?"
+      },
+      {
+        "name": "Weaknesses",
+        "hint": "Inside. Where are we weak?"
+      },
+      {
+        "name": "Threats",
+        "hint": "Outside. What can hurt us?"
+      }
+    ],
+    "how": [
+      "Write 3 to 5 items in each box. Be specific.",
+      "Then answer the four questions below."
+    ],
+    "promptsTitle": "Change the lists to actions",
+    "prompts": [
+      {
+        "id": "s",
+        "q": "How can we use our strengths more?",
+        "type": "text"
+      },
+      {
+        "id": "w",
+        "q": "How can we reduce our weaknesses?",
+        "type": "text"
+      },
+      {
+        "id": "o",
+        "q": "How can we use the opportunities?",
+        "type": "text"
+      },
+      {
+        "id": "t",
+        "q": "How can we protect ourselves from the threats?",
+        "type": "text"
+      }
+    ]
+  },
+  "bcg_box": {
+    "renderer": "quadrant",
+    "title": "BCG box: where to invest?",
+    "source": "BCG matrix. From The Decision Book.",
+    "intro": "Sort products, business units, or projects by market growth and by your share of the market.",
+    "how": [
+      "Add each product or unit.",
+      "Place each one by market growth (up is fast growth) and by relative market share (right is a bigger share).",
+      "Do the action in each box."
+    ],
+    "itemPlaceholder": "Type a product or unit and press Add",
+    "axes": {
+      "x": {
+        "label": "Relative market share",
+        "low": "low share",
+        "high": "high share"
+      },
+      "y": {
+        "label": "Market growth",
+        "low": "low growth",
+        "high": "high growth"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Question marks",
+        "when": "High growth, low share",
+        "action": "This is a hard decision. Invest strongly or stop."
+      },
+      "tr": {
+        "name": "Stars",
+        "when": "High growth, high share",
+        "action": "Invest. Growth uses much money."
+      },
+      "bl": {
+        "name": "Dogs",
+        "when": "Low growth, low share",
+        "action": "Sell or close it. Keep it only if it has a value that is not financial."
+      },
+      "br": {
+        "name": "Cash cows",
+        "when": "Low growth, high share",
+        "action": "Keep it. It costs little and gives a high return."
+      }
+    }
+  },
+  "project_portfolio": {
+    "renderer": "quadrant",
+    "title": "Project portfolio matrix",
+    "source": "Project portfolio matrix. From The Decision Book.",
+    "intro": "You can have many projects. Decide which projects to keep, change, give to other people, or stop.",
+    "how": [
+      "List all your projects. Include work projects and private projects.",
+      "Place each project by two things. First, how much it helps your main goal. Second, how much you learn from it."
+    ],
+    "itemPlaceholder": "Type a project and press Add",
+    "axes": {
+      "x": {
+        "label": "How much it helps my main goal",
+        "low": "helps little",
+        "high": "helps much"
+      },
+      "y": {
+        "label": "How much I learn from it",
+        "low": "learn little",
+        "high": "learn much"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Change the project",
+        "when": "It helps little. You learn much.",
+        "action": "Change it to serve your main goal. Or keep it as a learning project."
+      },
+      "tr": {
+        "name": "Very good project",
+        "when": "It helps much. You learn much.",
+        "action": "Protect your time for these projects."
+      },
+      "bl": {
+        "name": "Stop the project",
+        "when": "It helps little. You learn little.",
+        "action": "Say no or stop."
+      },
+      "br": {
+        "name": "Give it to another person",
+        "when": "It helps much. You learn little.",
+        "action": "The result matters, but you learn little. Give it to another person if you can."
+      }
+    }
+  },
+  "feedback_box": {
+    "renderer": "quadrant",
+    "title": "Feedback box",
+    "source": "Feedback box. From The Decision Book.",
+    "intro": "Sort the feedback that you received. Decide which feedback to use and which feedback to ignore.",
+    "how": [
+      "Write each piece of feedback as one short line.",
+      "Place it by what you think of your work and by what the feedback says."
+    ],
+    "itemPlaceholder": "Type one piece of feedback and press Add",
+    "axes": {
+      "x": {
+        "label": "What I think of my work",
+        "low": "I think it is bad",
+        "high": "I think it is good"
+      },
+      "y": {
+        "label": "What the feedback says",
+        "low": "it must change",
+        "high": "it can stay"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Suggestion",
+        "when": "I think it is bad, but I accept it.",
+        "action": "You can usually ignore it."
+      },
+      "tr": {
+        "name": "Compliment",
+        "when": "I think it is good too. It can stay.",
+        "action": "Keep it."
+      },
+      "bl": {
+        "name": "Criticism",
+        "when": "I think it is bad too. It must change.",
+        "action": "Act on it first."
+      },
+      "br": {
+        "name": "Advice",
+        "when": "I think it is good, but it must change.",
+        "action": "Think carefully. Decide which advice to follow."
+      }
+    }
+  },
+  "hard_choice": {
+    "renderer": "quadrant",
+    "title": "Hard choice model: what kind of decision is this?",
+    "source": "Hard choice model. From The Decision Book.",
+    "intro": "Each decision has two traits. The first trait is how easy it is to compare the options. The second trait is the size of the consequences. Place your decision to see how much effort it needs.",
+    "how": [
+      "Add each decision that you have.",
+      "Place each decision in the box that fits best."
+    ],
+    "itemPlaceholder": "Type a decision and press Add",
+    "axes": {
+      "x": {
+        "label": "Size of the consequences",
+        "low": "none or small",
+        "high": "big"
+      },
+      "y": {
+        "label": "Can I compare the options?",
+        "low": "hard to compare",
+        "high": "easy to compare"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Easy choice",
+        "when": "Easy to compare. Small consequences.",
+        "action": "One option is better. A wrong choice costs little. Decide fast."
+      },
+      "tr": {
+        "name": "Big but clear",
+        "when": "Easy to compare. Big consequences.",
+        "action": "The better option is clear. The decision is big, but it is easy."
+      },
+      "bl": {
+        "name": "Different options",
+        "when": "Hard to compare. Small consequences.",
+        "action": "Each option is good in a different way. Follow your preference."
+      },
+      "br": {
+        "name": "Hard choice",
+        "when": "Hard to compare. Big consequences.",
+        "action": "No answer is clearly right. Support your choice with strong personal reasons. Use more tools."
+      }
+    }
+  },
+  "rumsfeld": {
+    "renderer": "quadrant",
+    "title": "Rumsfeld matrix: what do I know about the risks?",
+    "source": "Rumsfeld matrix. From The Decision Book.",
+    "intro": "Sort what you know and what you do not know about a plan or a risk. The gaps show what to learn.",
+    "how": [
+      "List facts, risks, and worries.",
+      "Place each item in a box.",
+      "Then ask what you can do about the unknown boxes."
+    ],
+    "itemPlaceholder": "Type a fact, risk, or worry and press Add",
+    "axes": {
+      "x": {
+        "label": "Awareness",
+        "low": "I know about it",
+        "high": "I do not know about it"
+      },
+      "y": {
+        "label": "Evidence",
+        "low": "no evidence",
+        "high": "I have evidence"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Known knowns",
+        "when": "We know it exists. We have a countermeasure.",
+        "action": "Keep the countermeasure active."
+      },
+      "tr": {
+        "name": "Unknown knowns",
+        "when": "We have no evidence, but we feel that it exists.",
+        "action": "Test your feeling. Find evidence."
+      },
+      "bl": {
+        "name": "Known unknowns",
+        "when": "We know it exists. We cannot tell when it happens.",
+        "action": "Make a plan. Set a warning sign."
+      },
+      "br": {
+        "name": "Unknown unknowns",
+        "when": "We do not know that we do not know.",
+        "action": "Ask people outside your group. Keep a reserve. Do a pre-mortem."
+      }
+    }
+  },
+  "johari": {
+    "renderer": "quadrant",
+    "title": "Johari window",
+    "source": "Johari window. From The Decision Book.",
+    "intro": "See yourself through four windows. The windows show what you and other people know about you. Use it before a big choice about your career or role.",
+    "how": [
+      "Choose words that describe you, for example reliable or fun. Place each word.",
+      "Ask 2 or 3 people to choose words for you. Add their words and place them."
+    ],
+    "itemPlaceholder": "Type a word that describes you and press Add",
+    "axes": {
+      "x": {
+        "label": "About me",
+        "low": "known to me",
+        "high": "unknown to me"
+      },
+      "y": {
+        "label": "To others",
+        "low": "unknown to others",
+        "high": "known to others"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Open",
+        "when": "I know it. Others know it.",
+        "action": "You show this openly."
+      },
+      "tr": {
+        "name": "Blind spot",
+        "when": "I do not know it. Others know it.",
+        "action": "Feedback can help here. It can also hurt."
+      },
+      "bl": {
+        "name": "Hidden",
+        "when": "I know it. I hide it.",
+        "action": "Ask why you hide it. Share what is safe."
+      },
+      "br": {
+        "name": "Unknown",
+        "when": "I do not know it. Others do not know it.",
+        "action": "Sometimes something new appears. Stay curious."
+      }
+    }
+  },
+  "flow_model": {
+    "renderer": "quadrant",
+    "title": "Flow model: what makes you happy?",
+    "source": "Flow model by Mihaly Csikszentmihalyi. Also in The Decision Book.",
+    "intro": "Place your activities by the challenge that they give and by your ability. Flow happens when the challenge and the ability match.",
+    "how": [
+      "List your main tasks or activities.",
+      "Place each one by how hard it is for you and by how skilled you are."
+    ],
+    "itemPlaceholder": "Type an activity and press Add",
+    "axes": {
+      "x": {
+        "label": "My ability",
+        "low": "low ability",
+        "high": "high ability"
+      },
+      "y": {
+        "label": "The challenge",
+        "low": "low challenge",
+        "high": "high challenge"
+      }
+    },
+    "quadrants": {
+      "tl": {
+        "name": "Overchallenged",
+        "when": "High challenge. Low ability.",
+        "action": "You can burn out. Reduce the challenge or learn more skill."
+      },
+      "tr": {
+        "name": "Flow",
+        "when": "High challenge. High ability.",
+        "action": "Protect this and repeat it."
+      },
+      "bl": {
+        "name": "Apathy",
+        "when": "Low challenge. Low ability.",
+        "action": "Find something that matters to you."
+      },
+      "br": {
+        "name": "Underchallenged",
+        "when": "Low challenge. High ability.",
+        "action": "You can feel bored. Increase the challenge."
+      }
+    },
+    "readout": "Flow needs strong focus, a task that you chose, the right challenge, a clear goal, and quick feedback."
+  },
+  "force_field": {
+    "renderer": "forces",
+    "title": "Force field analysis",
+    "source": "Force field analysis by Kurt Lewin.",
+    "intro": "Forces push for a change. Other forces hold it back. The change happens only when the pushing forces are stronger.",
+    "how": [
+      "Write the change that you want in the decision question.",
+      "List the driving forces on the left. List the restraining forces on the right.",
+      "Give each force a score from 1 to 5.",
+      "Make a plan to reduce the strongest restraining force."
+    ],
+    "leftTitle": "Driving forces (push for the change)",
+    "rightTitle": "Restraining forces (hold it back)",
+    "leftWins": "The driving forces are stronger. The change can work. Also reduce the biggest restraining force.",
+    "rightWins": "The restraining forces are stronger. The change stops unless you reduce them.",
+    "tip": "Lewin advised to reduce the restraining forces. Do not only push harder. A change to one force can make new forces. Check again after your first action.",
+    "prompts": [
+      {
+        "id": "reduce",
+        "q": "Which restraining force can you reduce? How?",
+        "type": "text"
+      },
+      {
+        "id": "strengthen",
+        "q": "Which driving force can you make stronger? How?",
+        "type": "text"
+      }
+    ]
+  },
+  "pros_cons": {
+    "renderer": "forces",
+    "title": "Pros and cons with strength scores",
+    "source": "Pros and cons list with weights.",
+    "intro": "List reasons for and reasons against. Give each reason a strength score. A small reason then does not count as much as a big reason.",
+    "how": [
+      "List the reasons for on the left. List the reasons against on the right.",
+      "Give each reason a score from 1 to 5.",
+      "Read the balance. Then read the biggest item on each side."
+    ],
+    "leftTitle": "Reasons for",
+    "rightTitle": "Reasons against",
+    "leftWins": "The reasons for are stronger.",
+    "rightWins": "The reasons against are stronger.",
+    "balanced": "The two sides are equal. The totals do not decide. Read the biggest item on each side. Do a pre-mortem.",
+    "tip": "A list can have bias. Ask a person who does not agree with you to add one item to each side."
+  },
+  "rubber_band": {
+    "renderer": "forces",
+    "title": "Rubber band model",
+    "source": "Rubber band model. From The Decision Book.",
+    "intro": "Use this tool when you cannot choose between two important options. Write what pulls you and what holds you back. Your feelings can show which way you already lean.",
+    "how": [
+      "Write what pulls you toward the change.",
+      "Write what holds you where you are.",
+      "Ask for each item: is it a fact or a fear?"
+    ],
+    "leftTitle": "What is pulling me?",
+    "rightTitle": "What is holding me?",
+    "leftWins": "The pull is stronger. You can be near the point of decision.",
+    "rightWins": "The hold is stronger. Check if the items that hold you are facts or fears.",
+    "balanced": "The pull and the hold are equal. Try the 10/10/10 test or a small trial.",
+    "prompts": [
+      {
+        "id": "fear",
+        "q": "Which items on the holding side are facts? Which items are fears?",
+        "type": "text"
+      },
+      {
+        "id": "snap",
+        "q": "Imagine that the rubber band breaks today. Which way do you move?",
+        "type": "text"
+      }
+    ]
+  },
+  "decision_tree_ev": {
+    "renderer": "tree",
+    "title": "Decision tree with expected value",
+    "source": "Decision tree analysis and expected monetary value.",
+    "intro": "Use this tool when the results are uncertain. You must be able to estimate the chances and the payoffs. The tool changes guesses to numbers that you can compare.",
+    "how": [
+      "Add each option and its cost.",
+      "For each option, list what can happen. Give the chance in percent and the payoff.",
+      "The chances must total 100%.",
+      "Compare the expected value and the worst case."
+    ],
+    "readout": "Expected value is the average result if you could do the choice many times. If you can choose only one time, the worst case matters as much as the average.",
+    "data": {
+      "unit": ""
+    }
+  },
+  "ten_ten_ten": {
+    "renderer": "horizons",
+    "title": "10/10/10 test",
+    "source": "10-10-10 from Suzy Welch. Also in The Decision Book.",
+    "intro": "A strong feeling today can hide what matters later. Check how you feel about each option at three points in time.",
+    "how": [
+      "Write your options.",
+      "Rate each option. How do you feel after 10 minutes, after 10 months, and after 10 years?",
+      "Find the options that are good at all three points."
+    ],
+    "horizons": [
+      {
+        "label": "10 minutes after you decide",
+        "help": "Your first reaction. Often it is fear or relief."
+      },
+      {
+        "label": "10 months after you decide",
+        "help": "The practical result of the choice."
+      },
+      {
+        "label": "10 years after you decide",
+        "help": "The big picture. Does it still matter?"
+      }
+    ],
+    "readout": "An option that is bad after 10 minutes and good after 10 years is often worth it. An option that is good now and bad later is a trap."
+  },
+  "trial_run": {
+    "renderer": "horizons",
+    "title": "Three-day trial of each option",
+    "source": "The Jesuit method of Ignatius of Loyola. Also in The Decision Book.",
+    "intro": "If two options feel equal, try each option before you choose. Act for 3 days as if you chose option one. Then do the same for option two.",
+    "how": [
+      "Do the trial for option one. Rate your feeling after each day.",
+      "Do the same for option two.",
+      "Compare how each trial felt."
+    ],
+    "horizons": [
+      {
+        "label": "After day 1",
+        "help": "How do you feel?"
+      },
+      {
+        "label": "After day 2",
+        "help": "Is the feeling the same, better, or worse?"
+      },
+      {
+        "label": "After day 3",
+        "help": "How do you feel about a final choice of this option?"
+      }
+    ],
+    "readout": "Read the trend and the total. A feeling that gets better each day is a good sign."
+  },
+  "premortem": {
+    "renderer": "guided",
+    "title": "Pre-mortem: imagine it failed",
+    "source": "Pre-mortem by Gary Klein.",
+    "intro": "Before you commit, imagine that the decision failed. Work backward from the failure and ask why. This makes it safe to name risks that people do not usually say.",
+    "steps": [
+      {
+        "id": "story",
+        "q": "It is one year later. The decision gave a bad result. What happened? Write one sentence.",
+        "type": "text"
+      },
+      {
+        "id": "reasons",
+        "q": "List all reasons for the failure. Write fast. Include causes that you or your team made.",
+        "type": "text"
+      },
+      {
+        "id": "top3",
+        "q": "Choose the 3 reasons that are most likely or most damaging. Which reason do you notice too late?",
+        "type": "text"
+      },
+      {
+        "id": "fix",
+        "q": "For each of the 3 reasons, write one action that reduces the chance or the damage.",
+        "type": "text"
+      },
+      {
+        "id": "signal",
+        "q": "Which early warning sign shows that the plan is failing? Who watches for it?",
+        "type": "text"
+      },
+      {
+        "id": "verdict",
+        "q": "What is your verdict after this exercise?",
+        "type": "choice",
+        "choices": [
+          "Go as planned",
+          "Go, with the changes above",
+          "Test with a small step first",
+          "Stop"
+        ]
+      }
+    ],
+    "readout": "A plan that has only reasons for success is a hope. A risk that you name now costs less to fix than a risk that you find later."
+  },
+  "doors": {
+    "renderer": "flow",
+    "title": "One-way or two-way door?",
+    "source": "Type 1 and Type 2 decisions. From the Amazon shareholder letters of Jeff Bezos.",
+    "intro": "Most decisions can be undone. Do not treat all decisions as if you cannot undo them. Find which kind of decision you have. Then use the right amount of effort.",
+    "how": [
+      "Answer each question.",
+      "Do the action at the end."
+    ],
+    "data": {
+      "start": "start",
+      "nodes": {
+        "start": {
+          "q": "If this goes wrong, how hard is it to return?",
+          "options": [
+            {
+              "label": "Easy. I can undo it fast and at low cost.",
+              "next": "two"
+            },
+            {
+              "label": "Hard. To undo it costs much time, money, or trust.",
+              "next": "q_down"
+            },
+            {
+              "label": "Impossible.",
+              "next": "q_down"
+            }
+          ]
+        },
+        "q_down": {
+          "q": "Can you change it to a two-way door with a smaller first step?",
+          "help": "Ideas: a pilot, a trial period, a smaller first commitment, a clear way to exit. Or decide the test now and the full commitment later.",
+          "options": [
+            {
+              "label": "Yes, I have a smaller first step that I can undo.",
+              "next": "down"
+            },
+            {
+              "label": "No, it is a true one-way door.",
+              "next": "one"
+            }
+          ]
+        },
+        "two": {
+          "outcome": {
+            "title": "Two-way door: decide fast",
+            "text": "Choose a good option when you have about 70% of the information. Do it as a trial. Set a review date. A long analysis costs more than a small mistake here.",
+            "next": [
+              "Set a review date.",
+              "Use a weighted matrix only if the options are close."
+            ]
+          }
+        },
+        "down": {
+          "outcome": {
+            "title": "Change it to a two-way door first",
+            "text": "Do the pilot or the trial. Make the big decision later with real data.",
+            "next": [
+              "Write which result makes you go further.",
+              "Write which result makes you stop."
+            ]
+          }
+        },
+        "one": {
+          "outcome": {
+            "title": "One-way door: go slowly",
+            "text": "Give this decision real effort. Use more than one tool. Ask another person for an opinion. Then commit fully.",
+            "next": [
+              "Do a pre-mortem.",
+              "Use the 10/10/10 test.",
+              "Build a weighted decision matrix.",
+              "Set a stop rule before you start."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cynefin": {
+    "renderer": "flow",
+    "title": "Cynefin: what kind of situation is this?",
+    "source": "Cynefin framework by Dave Snowden.",
+    "intro": "Different situations need different ways to decide. Find which kind of situation you have before you choose a tool.",
+    "how": [
+      "Answer the questions.",
+      "Read the approach at the end."
+    ],
+    "data": {
+      "start": "start",
+      "nodes": {
+        "start": {
+          "q": "Is something urgent and out of control now?",
+          "help": "Examples: a crisis, an emergency, or a sudden failure.",
+          "options": [
+            {
+              "label": "Yes, it is a crisis.",
+              "next": "chaotic"
+            },
+            {
+              "label": "No, I have some time.",
+              "next": "q2"
+            }
+          ]
+        },
+        "q2": {
+          "q": "How well can you tell what happens if you take an action?",
+          "options": [
+            {
+              "label": "Very well. Cause and effect are clear. Anyone can see them.",
+              "next": "clear"
+            },
+            {
+              "label": "Well enough, but it needs study or an expert.",
+              "next": "complicated"
+            },
+            {
+              "label": "Not well. I can learn it only if I try and watch.",
+              "next": "complex"
+            },
+            {
+              "label": "I cannot tell which of these is true.",
+              "next": "disorder"
+            }
+          ]
+        },
+        "clear": {
+          "outcome": {
+            "title": "Clear: sense, categorize, respond",
+            "text": "See the facts. Match them to a known category. Follow the standard method.",
+            "next": [
+              "Use a checklist or a simple rule.",
+              "Do not analyze too much."
+            ]
+          }
+        },
+        "complicated": {
+          "outcome": {
+            "title": "Complicated: sense, analyze, respond",
+            "text": "Collect the facts. Ask experts. Compare the options. Then decide.",
+            "next": [
+              "Weighted decision matrix.",
+              "Decision tree with expected value."
+            ]
+          }
+        },
+        "complex": {
+          "outcome": {
+            "title": "Complex: probe, sense, respond",
+            "text": "You cannot know the result before you act. Run small experiments that are safe to fail. Watch what happens. Do more of what works.",
+            "next": [
+              "Plan small trials. Do not make one big bet.",
+              "Use two-way door thinking.",
+              "Do a pre-mortem for each experiment."
+            ]
+          }
+        },
+        "chaotic": {
+          "outcome": {
+            "title": "Chaotic: act, sense, respond",
+            "text": "Take an action to stabilize the situation first. Then see what happened. Move toward a calm situation where you can think.",
+            "next": [
+              "Act to stop the damage.",
+              "Then do this check again."
+            ]
+          }
+        },
+        "disorder": {
+          "outcome": {
+            "title": "Not sure: split the problem",
+            "text": "Split the problem into smaller parts. Answer these questions for each part. Different parts can be in different situations.",
+            "next": [
+              "List the parts.",
+              "Do this check for each part."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "yes_no_rule": {
+    "renderer": "flow",
+    "title": "Yes/no rule: decide fast by elimination",
+    "source": "The yes/no rule. From The Decision Book.",
+    "intro": "Use a short chain of yes/no questions to decide fast.",
+    "authorNote": "Write new nodes for the real problem before you build. Use 3 to 5 questions. Every path must end in an outcome.",
+    "how": [
+      "Answer each question with yes or no.",
+      "Follow the chain to the result."
+    ],
+    "data": {
+      "start": "q1",
+      "nodes": {
+        "q1": {
+          "q": "Replace: Does this need action now?",
+          "options": [
+            {
+              "label": "Yes",
+              "next": "q2"
+            },
+            {
+              "label": "No",
+              "next": "wait"
+            }
+          ]
+        },
+        "q2": {
+          "q": "Replace: Can you undo the action?",
+          "options": [
+            {
+              "label": "Yes",
+              "next": "go"
+            },
+            {
+              "label": "No",
+              "next": "slow"
+            }
+          ]
+        },
+        "wait": {
+          "outcome": {
+            "title": "Wait",
+            "text": "Do not act now. Set a date to check again."
+          }
+        },
+        "go": {
+          "outcome": {
+            "title": "Go",
+            "text": "Act now. Then review the result."
+          }
+        },
+        "slow": {
+          "outcome": {
+            "title": "Go slowly",
+            "text": "Use a deeper tool first."
+          }
+        }
+      }
+    }
+  },
+  "hersey_blanchard": {
+    "renderer": "flow",
+    "title": "Hersey-Blanchard: how do I lead this person?",
+    "source": "Hersey-Blanchard situational leadership. From The Decision Book.",
+    "intro": "The best leadership style depends on the person and the task. Find how ready the person is for this task.",
+    "how": [
+      "Think of one person and one task.",
+      "Choose the description that fits the person best for this task."
+    ],
+    "data": {
+      "start": "start",
+      "nodes": {
+        "start": {
+          "q": "How ready is this person for this task?",
+          "options": [
+            {
+              "label": "New to it: low skill, high enthusiasm.",
+              "next": "instruct"
+            },
+            {
+              "label": "Learning: some skill, but doubt or stress.",
+              "next": "coach"
+            },
+            {
+              "label": "Skilled, but motivation or confidence changes often.",
+              "next": "support"
+            },
+            {
+              "label": "Skilled, confident, and motivated.",
+              "next": "delegate"
+            }
+          ]
+        },
+        "instruct": {
+          "outcome": {
+            "title": "Instruct",
+            "text": "Give clear orders and steps. Check often.",
+            "next": [
+              "Show how to do the task.",
+              "Set small, clear goals."
+            ]
+          }
+        },
+        "coach": {
+          "outcome": {
+            "title": "Coach",
+            "text": "Explain why. Ask questions. Help the person find the answer.",
+            "next": [
+              "Ask: what do you think we must do?",
+              "Give feedback fast."
+            ]
+          }
+        },
+        "support": {
+          "outcome": {
+            "title": "Support",
+            "text": "Share decisions. Listen. Build confidence. Ask what makes the motivation higher or lower.",
+            "next": [
+              "Ask how the person feels about the task.",
+              "Let the person decide how. You agree on what."
+            ]
+          }
+        },
+        "delegate": {
+          "outcome": {
+            "title": "Delegate",
+            "text": "Give the person projects. Let the person lead. Stay available.",
+            "next": [
+              "Agree on the goal and the deadline.",
+              "Do not interfere."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "stop_rule": {
+    "renderer": "guided",
+    "title": "Stop rule: decide when you quit",
+    "source": "Stop rule. From The Decision Book.",
+    "intro": "Set your stop rule before you start, while you are calm. In the heat of the moment, it is hard to return. The rule does not change. It saves you from long and painful debates.",
+    "steps": [
+      {
+        "id": "goal",
+        "q": "What is the goal?",
+        "type": "text"
+      },
+      {
+        "id": "hard",
+        "q": "What is your fixed limit? Complete this sentence: If we pass ___ without ___, we stop.",
+        "help": "Use a time, a cost, or a safety limit. Use a clear number or date.",
+        "type": "text"
+      },
+      {
+        "id": "soft",
+        "q": "What is your flexible limit? It can move if a clear condition is true.",
+        "help": "Example: if the heart rate is below 150 at 2 pm, we can climb until 3 pm.",
+        "type": "text"
+      },
+      {
+        "id": "who",
+        "q": "Who calls the stop? Can another person overrule this person?",
+        "type": "text"
+      },
+      {
+        "id": "then",
+        "q": "What do you do when you reach the limit?",
+        "type": "text"
+      },
+      {
+        "id": "checks",
+        "q": "Check your rule.",
+        "type": "checks",
+        "items": [
+          "I wrote the limits before the start.",
+          "Everyone involved knows the limits.",
+          "No person can change the fixed limit under pressure."
+        ]
+      }
+    ],
+    "readout": "A stop rule works because it does not change. People broke a rule of this type on Mount Everest in 1996. Eight people died."
+  },
+  "buyers_model": {
+    "renderer": "guided",
+    "title": "Buyer's decision model",
+    "source": "Buyer's decision model. From The Decision Book.",
+    "intro": "Use this tool when you buy a product or a service and you cannot decide. Examples: a car, a laptop, a vendor.",
+    "steps": [
+      {
+        "section": "1. Set a research limit",
+        "id": "research",
+        "q": "How much research is enough? Set your own limits.",
+        "help": "Example: search for 3 hours, ask 3 friends, visit 2 shops.",
+        "type": "text"
+      },
+      {
+        "section": "2. Lower your expectations",
+        "id": "criteria",
+        "q": "List your 5 most important criteria in order.",
+        "type": "text"
+      },
+      {
+        "section": "2. Lower your expectations",
+        "id": "cut",
+        "q": "Remove the last two. Which two did you remove?",
+        "type": "text"
+      },
+      {
+        "section": "3. Do not worry",
+        "id": "tentenR",
+        "q": "How will you feel about this purchase after 10 days, after 10 months, and after 10 years?",
+        "type": "text"
+      },
+      {
+        "section": "4. If two options are equal",
+        "id": "tiebreak",
+        "q": "Choose a way to decide between equal options.",
+        "type": "choice",
+        "choices": [
+          "Let the seller or a friend choose",
+          "Flip a coin and notice your feeling",
+          "Try each option for 3 days",
+          "The options are not equal. I do not need a tie-break."
+        ]
+      }
+    ],
+    "readout": "You never know enough, but you can quickly know too much. Limits stop an endless search."
+  },
+  "unconscious_thinking": {
+    "renderer": "guided",
+    "title": "Let your unconscious mind help",
+    "source": "Theory of unconscious thinking. From The Decision Book.",
+    "intro": "Use this tool for a complex choice with no clear answer. Take a break from thinking. Your unconscious mind can sort much information. A coin toss can show what you want.",
+    "steps": [
+      {
+        "id": "facts",
+        "q": "Write the key facts and your top 2 options.",
+        "type": "text"
+      },
+      {
+        "id": "break",
+        "q": "Take a real break. Walk, sleep, or do other work.",
+        "type": "check",
+        "label": "I took a break."
+      },
+      {
+        "id": "coin",
+        "q": "Flip the coin. Before it lands, notice what you hope for.",
+        "type": "coin",
+        "options": [
+          "Option 1",
+          "Option 2"
+        ]
+      },
+      {
+        "id": "hope",
+        "q": "What did you hope for? Is this your answer?",
+        "type": "text"
+      }
+    ],
+    "readout": "The coin does not decide. Your reaction to the coin decides."
+  },
+  "decide_when": {
+    "renderer": "guided",
+    "title": "When do I decide?",
+    "source": "Consequences model. From The Decision Book.",
+    "intro": "No decision is also a decision. At the start of a project you know little, but your choices matter much. Later you know more, but your choices matter less. Decide with enough information. Do not decide too early or too late.",
+    "steps": [
+      {
+        "id": "know",
+        "q": "What do you know now? What do you not know?",
+        "type": "text"
+      },
+      {
+        "id": "conseq",
+        "q": "How big are the consequences if you choose wrong?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "small",
+        "high": "huge"
+      },
+      {
+        "id": "info",
+        "q": "How much of the information that you need do you have?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "very little",
+        "high": "almost all"
+      },
+      {
+        "id": "latest",
+        "q": "What is the latest date when waiting is safe? What does waiting cost?",
+        "type": "text"
+      },
+      {
+        "id": "plan",
+        "q": "What do you do?",
+        "type": "choice",
+        "choices": [
+          "Decide now",
+          "Get one specific piece of information. Then decide by the date.",
+          "Decide on the date, even if the information is not complete"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "conseq",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "The consequences are small. Decide now. Waiting costs more than a small mistake."
+      },
+      {
+        "if": [
+          {
+            "id": "info",
+            "op": "gte",
+            "value": 4
+          }
+        ],
+        "then": "You know enough. More research gives little."
+      },
+      {
+        "if": [
+          {
+            "id": "conseq",
+            "op": "gte",
+            "value": 4
+          },
+          {
+            "id": "info",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "The stakes are high and you have little information. Find the one or two facts that matter most. Set a firm deadline."
+      }
+    ],
+    "readout": "If you decide to decide later, tell the people involved. If you do not tell them, they see no decision."
+  },
+  "goal_check": {
+    "renderer": "guided",
+    "title": "Goal check: is this the right goal?",
+    "source": "John Whitmore, Coaching for Performance. Also in The Decision Book.",
+    "intro": "Split your goal in two parts. The final goal is the result that you want. The performance goal is what you do and control. Then test the goal.",
+    "steps": [
+      {
+        "id": "final",
+        "q": "My final goal (what I want at the end):",
+        "type": "text"
+      },
+      {
+        "id": "perf",
+        "q": "My performance goal (what I do and control):",
+        "type": "text"
+      },
+      {
+        "id": "smart",
+        "q": "SMART check",
+        "type": "checks",
+        "items": [
+          "Specific",
+          "Measurable",
+          "Attainable",
+          "Realistic",
+          "Time-phased (has a date)"
+        ]
+      },
+      {
+        "id": "pure",
+        "q": "PURE check",
+        "type": "checks",
+        "items": [
+          "Positive (says what I want and not what I avoid)",
+          "Understood by everyone involved",
+          "Relevant to what matters",
+          "Ethical"
+        ]
+      },
+      {
+        "id": "clear",
+        "q": "CLEAR check",
+        "type": "checks",
+        "items": [
+          "Challenging",
+          "Legal",
+          "Environmentally sound (fits my life and the people around me)",
+          "Agreed with the people involved",
+          "Recorded (written)"
+        ]
+      }
+    ],
+    "readout": "Whitmore calls the third set CLEAR. If a box is empty, rewrite the goal until all boxes are full."
+  },
+  "grow": {
+    "renderer": "guided",
+    "title": "GROW: Goal, Reality, Options, Will",
+    "source": "GROW model by Sir John Whitmore.",
+    "intro": "GROW has four steps. Use it to think about a personal or work problem. Answer one question at a time.",
+    "steps": [
+      {
+        "section": "Goal",
+        "id": "g",
+        "q": "What do I want? What is a good result?",
+        "type": "text"
+      },
+      {
+        "section": "Reality",
+        "id": "r1",
+        "q": "What happens now? What did I try?",
+        "type": "text"
+      },
+      {
+        "section": "Reality",
+        "id": "r2",
+        "q": "What stops me?",
+        "type": "text"
+      },
+      {
+        "section": "Options",
+        "id": "o",
+        "q": "What can I do? List at least 3 ideas. Odd ideas are good.",
+        "type": "text"
+      },
+      {
+        "section": "Will",
+        "id": "w",
+        "q": "What will I do? When? Who helps me or checks my work?",
+        "type": "text"
+      },
+      {
+        "section": "Will",
+        "id": "commit",
+        "q": "How committed am I to this step?",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "low": "not at all",
+        "high": "fully"
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "commit",
+            "op": "lte",
+            "value": 6
+          }
+        ],
+        "then": "Your commitment is low. Make the step smaller or change the plan until you feel sure."
+      }
+    ]
+  },
+  "regret_minimization": {
+    "renderer": "guided",
+    "title": "Regret minimization",
+    "source": "Regret minimization framework by Jeff Bezos.",
+    "intro": "Use this tool for a rare and big personal choice. Imagine that you are 80 years old and you look back. Which choice do you regret more?",
+    "steps": [
+      {
+        "id": "view",
+        "q": "You are 80. You look back at this moment. What do you say to the person that you are now?",
+        "type": "text"
+      },
+      {
+        "id": "notdo",
+        "q": "How much do you regret that you did NOT do it?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "no regret",
+        "high": "much regret"
+      },
+      {
+        "id": "do",
+        "q": "How much do you regret that you did it and failed?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "no regret",
+        "high": "much regret"
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "notdo",
+            "op": "gte",
+            "value": 4
+          },
+          {
+            "id": "do",
+            "op": "lte",
+            "value": 3
+          }
+        ],
+        "then": "Not trying hurts more than failing. This points to a decision to do it. Check it with a pre-mortem."
+      },
+      {
+        "if": [
+          {
+            "id": "do",
+            "op": "gte",
+            "value": 4
+          },
+          {
+            "id": "notdo",
+            "op": "lte",
+            "value": 3
+          }
+        ],
+        "then": "Failing hurts more than not trying. Find a safer and smaller version."
+      }
+    ],
+    "readout": "Use this tool for rare, personal, big choices. Do not use it for small daily decisions. Do not use it if the safety of other people depends on your choice."
+  },
+  "wrap": {
+    "renderer": "guided",
+    "title": "WRAP: four steps to a better choice",
+    "source": "WRAP process by Chip and Dan Heath, from the book Decisive.",
+    "intro": "WRAP has four steps. The steps help you avoid four common traps: narrow thinking, bias to confirm, short-term emotion, and too much confidence.",
+    "steps": [
+      {
+        "section": "W: Widen your options",
+        "id": "w1",
+        "q": "List all options. Can you do both options (an AND option) and not only one?",
+        "type": "text"
+      },
+      {
+        "section": "W: Widen your options",
+        "id": "w2",
+        "q": "Vanishing options test: all your current options disappear. What do you do?",
+        "type": "text"
+      },
+      {
+        "section": "W: Widen your options",
+        "id": "w3",
+        "q": "Which person solved a similar problem? What did this person do?",
+        "type": "text"
+      },
+      {
+        "section": "R: Reality-test your assumptions",
+        "id": "r1",
+        "q": "What must be true for your favorite option to work?",
+        "type": "text"
+      },
+      {
+        "section": "R: Reality-test your assumptions",
+        "id": "r2",
+        "q": "Ask a person who does not agree with you: which evidence proves you wrong?",
+        "type": "text"
+      },
+      {
+        "section": "R: Reality-test your assumptions",
+        "id": "r3",
+        "q": "Can you do a small test before you commit?",
+        "type": "text"
+      },
+      {
+        "section": "A: Attain distance",
+        "id": "a1",
+        "q": "What do you tell a good friend to do? What does your successor do?",
+        "type": "text"
+      },
+      {
+        "section": "A: Attain distance",
+        "id": "a2",
+        "q": "Which of your core values does each option follow?",
+        "type": "text"
+      },
+      {
+        "section": "P: Prepare to be wrong",
+        "id": "p1",
+        "q": "Imagine that the plan failed. What are the likely reasons?",
+        "type": "text"
+      },
+      {
+        "section": "P: Prepare to be wrong",
+        "id": "p2",
+        "q": "Set a tripwire. Which sign makes you think again? By which date?",
+        "type": "text"
+      }
+    ]
+  },
+  "bias_check": {
+    "renderer": "guided",
+    "title": "Bias check: four common thinking mistakes",
+    "source": "Cognitive bias. From The Decision Book.",
+    "intro": "You cannot remove these biases. You can improve your thinking. Check your decision against each bias.",
+    "steps": [
+      {
+        "section": "Anchor effect",
+        "id": "a1",
+        "q": "What is the first number or fact that you heard? Does it hold you?",
+        "type": "text"
+      },
+      {
+        "section": "Anchor effect",
+        "id": "a2",
+        "q": "Do not trust first impressions.",
+        "type": "check",
+        "label": "I found a second, independent reference."
+      },
+      {
+        "section": "Confirmation error",
+        "id": "c1",
+        "q": "Which evidence changes your mind? Did you look for it?",
+        "type": "text"
+      },
+      {
+        "section": "Confirmation error",
+        "id": "c2",
+        "q": "Assume that you are wrong.",
+        "type": "check",
+        "label": "I asked a person who does not agree."
+      },
+      {
+        "section": "Availability error",
+        "id": "v1",
+        "q": "Do you use one story that you remember and not real data?",
+        "type": "text"
+      },
+      {
+        "section": "Availability error",
+        "id": "v2",
+        "q": "Do not trust stories.",
+        "type": "check",
+        "label": "I checked a larger sample or real numbers."
+      },
+      {
+        "section": "Fast and slow error",
+        "id": "f1",
+        "q": "Which part of your decision was a quick feeling?",
+        "help": "Test: a coffee and a cookie cost $1.10 together. The coffee costs $1 more than the cookie. How much is the cookie? Most people say 10 cents. The right answer is 5 cents.",
+        "type": "text"
+      },
+      {
+        "section": "Fast and slow error",
+        "id": "f2",
+        "q": "Read it again before you send it.",
+        "type": "check",
+        "label": "I read my decision again or waited one night."
+      }
+    ]
+  },
+  "personal_performance": {
+    "renderer": "guided",
+    "title": "Personal performance model: do I change my job?",
+    "source": "Personal performance model from The Decision Book. This version starts from a shared purpose.",
+    "intro": "Look at your role with three questions. What do others expect from you? What can you do? What do you want? Start from the purpose of the work, not only from yourself.",
+    "steps": [
+      {
+        "id": "purpose",
+        "q": "What is the purpose of your work or role?",
+        "type": "text"
+      },
+      {
+        "id": "have",
+        "q": "Have to: how much do others expect from you to reach this purpose?",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "low": "little",
+        "high": "much"
+      },
+      {
+        "id": "able",
+        "q": "Able to: how well can you do what others expect?",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "low": "not well",
+        "high": "very well"
+      },
+      {
+        "id": "want",
+        "q": "Want to: how much of this work matches what you really want?",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "low": "not at all",
+        "high": "completely"
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "able",
+            "op": "gte",
+            "value": 6
+          },
+          {
+            "id": "want",
+            "op": "lte",
+            "value": 4
+          }
+        ],
+        "then": "You can do the work, but you do not want it. Find a different role, or a different meaning in this role."
+      },
+      {
+        "if": [
+          {
+            "id": "want",
+            "op": "gte",
+            "value": 6
+          },
+          {
+            "id": "able",
+            "op": "lte",
+            "value": 4
+          }
+        ],
+        "then": "You want it, but you cannot do it yet. Learn skills or get support."
+      },
+      {
+        "if": [
+          {
+            "id": "able",
+            "op": "lte",
+            "value": 4
+          },
+          {
+            "id": "want",
+            "op": "lte",
+            "value": 4
+          }
+        ],
+        "then": "The fit is weak on both. Think seriously about a change of role."
+      },
+      {
+        "if": [
+          {
+            "id": "able",
+            "op": "gte",
+            "value": 7
+          },
+          {
+            "id": "want",
+            "op": "gte",
+            "value": 7
+          }
+        ],
+        "then": "The fit is good. Check the expectations. Are they too low or too high?"
+      }
+    ],
+    "readout": "The original model starts only from the person. This version starts from the purpose of the work. Your choice then stays connected to the people and goals that you serve."
+  },
+  "six_hats": {
+    "renderer": "guided",
+    "title": "Six thinking hats",
+    "source": "Six thinking hats by Edward de Bono. Also in The Decision Book.",
+    "intro": "Look at the problem in six ways, one way at a time. A moderator must make sure that everyone uses the same hat at the same time.",
+    "steps": [
+      {
+        "section": "Blue hat: the process",
+        "id": "blue",
+        "q": "What is the big picture? What is the goal of this discussion?",
+        "type": "text"
+      },
+      {
+        "section": "White hat: facts",
+        "id": "white",
+        "q": "What are the facts? What do we know? What do we not know?",
+        "type": "text"
+      },
+      {
+        "section": "Red hat: feelings",
+        "id": "red",
+        "q": "What are my feelings and first reactions? You do not need to explain them.",
+        "type": "text"
+      },
+      {
+        "section": "Black hat: risks",
+        "id": "black",
+        "q": "What can go wrong? Where is the weak point?",
+        "type": "text"
+      },
+      {
+        "section": "Yellow hat: benefits",
+        "id": "yellow",
+        "q": "What is the best case? What is good about it?",
+        "type": "text"
+      },
+      {
+        "section": "Green hat: ideas",
+        "id": "green",
+        "q": "Which new ideas or options can we find?",
+        "type": "text"
+      },
+      {
+        "section": "Blue hat: close",
+        "id": "blue2",
+        "q": "What did we learn? What is our next step?",
+        "type": "text"
+      }
+    ],
+    "readout": "A team of the same type of people thinks in the same way. Mix the roles."
+  },
+  "appreciative_inquiry": {
+    "renderer": "guided",
+    "title": "Appreciative inquiry: develop ideas",
+    "source": "Appreciative inquiry 4-D model. From The Decision Book.",
+    "intro": "Focus on strengths and potential. Take an idea that is not complete. Continue to develop it. Do not drop it too early.",
+    "steps": [
+      {
+        "id": "type",
+        "q": "When a person shares an idea, how do you usually react?",
+        "type": "choice",
+        "choices": [
+          "'No!' (the dictator)",
+          "'The idea is good, but...' (the fault-finder)",
+          "'No, the idea is not good because...' (the school teacher)",
+          "'Yes, and we can also...' (the appreciative thinker)"
+        ]
+      },
+      {
+        "section": "Discovery",
+        "id": "d1",
+        "q": "What gives life? What is the best part of what exists now?",
+        "type": "text"
+      },
+      {
+        "section": "Dream",
+        "id": "d2",
+        "q": "What can be? Imagine what is possible.",
+        "type": "text"
+      },
+      {
+        "section": "Design",
+        "id": "d3",
+        "q": "What must be? Build the ideal together.",
+        "type": "text"
+      },
+      {
+        "section": "Deploy",
+        "id": "d4",
+        "q": "What will be? How do we do it well?",
+        "type": "text"
+      }
+    ]
+  },
+  "team_performance": {
+    "renderer": "guided",
+    "title": "Team performance model",
+    "source": "Drexler/Sibbet team performance model. From The Decision Book.",
+    "intro": "Change a group to a team. Ask each member to rate each stage. Work on the first stage that is not resolved.",
+    "steps": [
+      {
+        "id": "s1",
+        "q": "Orientation: Why am I here?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unclear",
+        "high": "clear"
+      },
+      {
+        "id": "s2",
+        "q": "Trust building: Who are you?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unresolved",
+        "high": "resolved"
+      },
+      {
+        "id": "s3",
+        "q": "Goal clarification: What are we doing?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unresolved",
+        "high": "resolved"
+      },
+      {
+        "id": "s4",
+        "q": "Commitment: How will we do it?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unresolved",
+        "high": "resolved"
+      },
+      {
+        "id": "s5",
+        "q": "Implementation: Who does what, when, and where?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unresolved",
+        "high": "resolved"
+      },
+      {
+        "id": "s6",
+        "q": "High performance: Wow!",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not there",
+        "high": "there"
+      },
+      {
+        "id": "s7",
+        "q": "Renewal: Why continue?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "unresolved",
+        "high": "resolved"
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "s1",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Orientation is weak. Make the purpose clear. Make clear who is in the team. Signs: disorientation, uncertainty, fear."
+      },
+      {
+        "if": [
+          {
+            "id": "s2",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Trust is weak. Make time to know each other. Signs: caution, mistrust, a false front."
+      },
+      {
+        "if": [
+          {
+            "id": "s3",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "The goals are not clear. Make the goals clear and shared. Signs: apathy, doubt, competition that does not help."
+      },
+      {
+        "if": [
+          {
+            "id": "s4",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Commitment is weak. Assign roles and resources. Make decisions. Signs: dependence, resistance, conflict."
+      },
+      {
+        "if": [
+          {
+            "id": "s5",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Implementation is weak. Make the process clear. Signs: missed deadlines, overload."
+      },
+      {
+        "if": [
+          {
+            "id": "s7",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Renewal is weak. Recognize and celebrate the results. Signs: boredom, burnout."
+      }
+    ]
+  },
+  "swiss_cheese": {
+    "renderer": "guided",
+    "title": "Swiss cheese model: how mistakes happen",
+    "source": "Swiss cheese model. From The Decision Book.",
+    "intro": "A mistake usually happens when holes in many layers of defense line up. Find the holes before they line up.",
+    "steps": [
+      {
+        "id": "what",
+        "q": "What went wrong, or what can go wrong?",
+        "type": "text"
+      },
+      {
+        "id": "kind",
+        "q": "What kind of mistake is it?",
+        "type": "choice",
+        "choices": [
+          "Real mistake (a person used the wrong process)",
+          "Black-out (a person forgot a step)",
+          "Slip-up (a person used the right process in a wrong way)"
+        ]
+      },
+      {
+        "id": "people",
+        "q": "People: which people take part (boss, team, colleagues)? What goes wrong between them?",
+        "type": "text"
+      },
+      {
+        "id": "tech",
+        "q": "Technical: which equipment or workplace problems cause the mistake?",
+        "type": "text"
+      },
+      {
+        "id": "org",
+        "q": "Organization: which task or timing problems cause the mistake?",
+        "type": "text"
+      },
+      {
+        "id": "outside",
+        "q": "Outside influences: time, economy, mood, weather?",
+        "type": "text"
+      },
+      {
+        "id": "prevent",
+        "q": "Which check, process, or timing change closes the holes?",
+        "type": "text"
+      },
+      {
+        "id": "worst",
+        "q": "How do you respond if the worst event still happens?",
+        "type": "text"
+      }
+    ]
+  },
+  "double_loop": {
+    "renderer": "guided",
+    "title": "Double-loop learning",
+    "source": "Double-loop learning. From The Decision Book.",
+    "intro": "Learn from mistakes on two levels. In the single loop, you change your actions. In the double loop, you question the goals and beliefs behind your actions.",
+    "steps": [
+      {
+        "id": "did",
+        "q": "What did you do? What was the result?",
+        "type": "text"
+      },
+      {
+        "id": "should",
+        "q": "What result did you expect?",
+        "type": "text"
+      },
+      {
+        "id": "single",
+        "q": "Single loop: which action can you change?",
+        "type": "text"
+      },
+      {
+        "id": "double",
+        "q": "Double loop: which goal, value, or belief made you act this way?",
+        "type": "text"
+      },
+      {
+        "id": "if",
+        "q": "What do you do if this belief is not true?",
+        "type": "text"
+      }
+    ]
+  },
+  "making_of": {
+    "renderer": "lists",
+    "title": "Making-of model: understand your past",
+    "source": "Making-of model. From The Decision Book.",
+    "intro": "To decide your future, first understand your past. Choose a time period. List the facts of what happened.",
+    "layout": "grid",
+    "columns": [
+      {
+        "name": "Goals (at the time)"
+      },
+      {
+        "name": "What I learned"
+      },
+      {
+        "name": "Obstacles I overcame"
+      },
+      {
+        "name": "Successes"
+      },
+      {
+        "name": "Obstacles I did not overcome"
+      },
+      {
+        "name": "Failures"
+      },
+      {
+        "name": "People involved"
+      }
+    ],
+    "promptsTitle": "Build the bridge to the future",
+    "prompts": [
+      {
+        "id": "bridge",
+        "q": "Which things from the past do you take into the future? Which things do you leave behind?",
+        "type": "text"
+      }
+    ]
+  },
+  "gap_in_market": {
+    "renderer": "guided",
+    "title": "Gap-in-the-market model",
+    "source": "Gap-in-the-market model. From The Decision Book.",
+    "intro": "Look at the market on several dimensions at one time. Find a gap that no company fills.",
+    "steps": [
+      {
+        "id": "dims",
+        "q": "Choose 3 dimensions, for example price, location, and how popular or cool it is.",
+        "type": "text"
+      },
+      {
+        "id": "comp",
+        "q": "List the competitors. Rate each competitor on the three dimensions (0 to 10).",
+        "type": "text"
+      },
+      {
+        "id": "crowded",
+        "q": "Where is the market crowded? Can you become the clear leader there?",
+        "type": "text"
+      },
+      {
+        "id": "empty",
+        "q": "Where is a gap that other companies do not see?",
+        "type": "text"
+      },
+      {
+        "id": "demand",
+        "q": "Is there real demand in that gap? An empty space can mean that nobody wants it. How do you check?",
+        "type": "text"
+      }
+    ]
+  },
+  "morphological_box": {
+    "renderer": "lists",
+    "title": "Morphological box and SCAMPER",
+    "source": "Morphological box and SCAMPER. From The Decision Book.",
+    "intro": "Use a structure to be creative. Split the problem into parts. List options for each part. Then combine one option from each part in new ways.",
+    "layout": "grid",
+    "columns": [
+      {
+        "name": "Part 1",
+        "hint": "Write the name of the part, then the options"
+      },
+      {
+        "name": "Part 2"
+      },
+      {
+        "name": "Part 3"
+      },
+      {
+        "name": "Part 4"
+      }
+    ],
+    "promptsTitle": "Combine the options and extend the ideas",
+    "prompts": [
+      {
+        "id": "combos",
+        "q": "Choose one option from each part. Write 2 or 3 combinations that can work.",
+        "type": "text"
+      },
+      {
+        "id": "sub",
+        "q": "SCAMPER. Substitute: what can you replace?",
+        "type": "text"
+      },
+      {
+        "id": "comb",
+        "q": "Combine: what can you join together?",
+        "type": "text"
+      },
+      {
+        "id": "adapt",
+        "q": "Adapt: what can you take from another area?",
+        "type": "text"
+      },
+      {
+        "id": "mod",
+        "q": "Modify: what can you make bigger, smaller, or different?",
+        "type": "text"
+      },
+      {
+        "id": "other",
+        "q": "Put to other use: who else can use this?",
+        "type": "text"
+      },
+      {
+        "id": "elim",
+        "q": "Eliminate: what can you remove?",
+        "type": "text"
+      },
+      {
+        "id": "rev",
+        "q": "Reverse: what happens if you do it the other way?",
+        "type": "text"
+      }
+    ]
+  },
+  "maslow_check": {
+    "renderer": "guided",
+    "title": "Maslow pyramid: what do I need and what do I want?",
+    "source": "Hierarchy of needs by Abraham Maslow. Also in The Decision Book.",
+    "intro": "Needs and wants are different. Check which needs you meet today. Basic needs come first.",
+    "steps": [
+      {
+        "id": "phys",
+        "q": "Physical needs (food, sleep, warmth): how well do you meet them?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not met",
+        "high": "well met"
+      },
+      {
+        "id": "sec",
+        "q": "Security (home, job, health, protection): how well do you meet it?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not met",
+        "high": "well met"
+      },
+      {
+        "id": "soc",
+        "q": "Social relationships (friends, partner, love): how well do you meet them?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not met",
+        "high": "well met"
+      },
+      {
+        "id": "rec",
+        "q": "Recognition (status, respect, money): how well do you meet it?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not met",
+        "high": "well met"
+      },
+      {
+        "id": "self",
+        "q": "Self-actualization (to become who you can be): how well do you meet it?",
+        "type": "scale",
+        "min": 1,
+        "max": 5,
+        "low": "not met",
+        "high": "well met"
+      },
+      {
+        "id": "want",
+        "q": "What do you want that is not a need?",
+        "type": "text"
+      }
+    ],
+    "rules": [
+      {
+        "if": [
+          {
+            "id": "phys",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Meet your basic needs first: food, sleep, warmth."
+      },
+      {
+        "if": [
+          {
+            "id": "phys",
+            "op": "gt",
+            "value": 2
+          },
+          {
+            "id": "sec",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Security is the lowest need that you do not meet. Be careful with risky choices that put it in danger."
+      },
+      {
+        "if": [
+          {
+            "id": "sec",
+            "op": "gt",
+            "value": 2
+          },
+          {
+            "id": "soc",
+            "op": "lte",
+            "value": 2
+          }
+        ],
+        "then": "Relationships are the lowest need that you do not meet. A choice that hurts your relationships can cost more than it gives."
+      }
+    ]
+  }
+}
